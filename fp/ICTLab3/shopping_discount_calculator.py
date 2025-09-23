@@ -23,12 +23,13 @@ print(f"Name: {name} \nOriginal Cart Value: {cart_value} \nDiscount applied: {di
 
 # Task 5
 
-bananas = 5
-price_per_banana = 20
+bananas = 10
+price_per_banana = 15
 total_cost = bananas * price_per_banana
 print("Total cost of bananas:", total_cost)
+# It will be 15 times 10 so the total cost will 150
 
-#Task 6
+# Task 6
 
 distance = 500
 fuel_efficiency = 12
@@ -37,3 +38,13 @@ passengers = 4
 total_cost = (distance / fuel_efficiency) * gas_price
 cost_per_person = total_cost / passengers
 print("Total trip cost:", total_cost)
+
+# Task 7
+
+length = 40
+width = 15
+area = length * width
+print("The garden area is:", area, "square feet")
+# The area also doubles if I double the length
+
+
