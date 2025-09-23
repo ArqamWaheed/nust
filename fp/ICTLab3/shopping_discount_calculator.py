@@ -27,3 +27,13 @@ bananas = 5
 price_per_banana = 20
 total_cost = bananas * price_per_banana
 print("Total cost of bananas:", total_cost)
+
+#Task 6
+
+distance = 500
+fuel_efficiency = 12
+gas_price = 280
+passengers = 4
+total_cost = (distance / fuel_efficiency) * gas_price
+cost_per_person = total_cost / passengers
+print("Total trip cost:", total_cost)
