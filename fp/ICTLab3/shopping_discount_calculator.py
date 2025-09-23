@@ -47,4 +47,9 @@ area = length * width
 print("The garden area is:", area, "square feet")
 # The area also doubles if I double the length
 
+# Task 8
 
+result1 = 10 + 5 * 2 # First it will multiply then it will add
+result2 = (10 + 5) * 2 # It will add first because its in paranthesis then it will mutliply the result
+result3 = 10 / 2 + 3 # It will divide first then add
+result4 = 10 / (2 + 3) # It will add first because its in paranthesis then it will divide
