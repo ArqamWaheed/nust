@@ -20,3 +20,10 @@ final_value = cart_value - discount_amount + tax_amount
 # Task 4
 
 print(f"Name: {name} \nOriginal Cart Value: {cart_value} \nDiscount applied: {discount}% \nTax amount: {tax}% \nYou need to pay {final_value}")
+
+# Task 5
+
+bananas = 5
+price_per_banana = 20
+total_cost = bananas * price_per_banana
+print("Total cost of bananas:", total_cost)
