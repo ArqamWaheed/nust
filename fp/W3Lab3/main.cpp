@@ -2,21 +2,15 @@
 using namespace std;
 
 int main() {
-    float distanceKm;
+    float num1;
+    float num2;
 
-    cout << "Enter distance between two cities (in km): ";
-    cin >> distanceKm;
-    
-    float meters = distanceKm * 1000;              
-    float feet = distanceKm * 3280.84;                  
-    float inches = distanceKm * 39370.1;                
-    float centimeters = distanceKm * 100000;        
-    
-    cout << "Distance in Kilometers: " << distanceKm << " km" << endl;
-    cout << "Distance in Meters:     " << meters << " m" << endl;
-    cout << "Distance in Feet:       " << feet << " ft" << endl;
-    cout << "Distance in Inches:     " << inches << " in" << endl;
-    cout << "Distance in Centimeters: " << centimeters << " cm" << endl;
-    
+    cout << "Enter the number you want to increment: ";
+    cin >> num1;
+    cout << "Enter the number you want to decrement: ";
+    cin >> num2; 
+
+    cout << "\nNumber 1: " << ++num1 << endl;
+    cout << "Number 2: " << --num2 << endl;
     return 0;
 }   
