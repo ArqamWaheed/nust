@@ -2,23 +2,21 @@
 using namespace std;
 
 int main() {
-    int sub1 = 80;
-    int sub2 = 70;
-    float sub3 = 87.1;
-    float sub4 = 93.4;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "                                                                " << endl;
-    cout << "                        *          *      *                     " << endl;
-    cout << "                       * *         *      *                     " << endl;
-    cout << "                      *   *        *      *                     " << endl;
-    cout << "                     *******       *  **  *                     " << endl;
-    cout << "                    *       *      * *  * *                     " << endl;
-    cout << "                   *         *     **    **                     " << endl;
-    cout << "                                                                " << endl;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "                    Subject 1:        "<< sub1 << endl;
-    cout << "                    Subject 2:        "<< sub2 << endl;
-    cout << "                    Subject 3:        "<< sub3 << endl;
-    cout << "                    Subject 4:        "<< sub4 << endl;
+    float distanceKm;
+
+    cout << "Enter distance between two cities (in km): ";
+    cin >> distanceKm;
+    
+    float meters = distanceKm * 1000;              
+    float feet = distanceKm * 3280.84;                  
+    float inches = distanceKm * 39370.1;                
+    float centimeters = distanceKm * 100000;        
+    
+    cout << "Distance in Kilometers: " << distanceKm << " km" << endl;
+    cout << "Distance in Meters:     " << meters << " m" << endl;
+    cout << "Distance in Feet:       " << feet << " ft" << endl;
+    cout << "Distance in Inches:     " << inches << " in" << endl;
+    cout << "Distance in Centimeters: " << centimeters << " cm" << endl;
+    
     return 0;
 }   
