@@ -2,21 +2,19 @@
 using namespace std;
 
 int main() {
-    int num;
+    char ch;
 
-    cout << "Enter a five-digit integer: ";
-    cin >> num;
+    cout << "Enter a character: ";
+    cin >> ch;
 
-    int d1 = num / 10000;
-    int d2 = (num / 1000) % 10;
-    int d3 = (num / 100) % 10;
-    int d4 = (num / 10) % 10;
-    int d5 = num % 10;
-
-    if (d1 == d5 && d2 == d4) {
-        cout << "The number is a palindrome." << endl;
+    if (ch >= 65 && ch <= 90) {
+        cout << "The character is a capital letter." << endl;
+    } else if (ch >= 97 && ch <= 122) {
+        cout << "The character is a small case letter." << endl;
+    } else if (ch >= 48 && ch <= 57) {
+        cout << "The character is a digit." << endl;
     } else {
-        cout << "The number is not a palindrome." << endl;
+        cout << "The character is a special symbol." << endl;
     }
     
     return 0;
