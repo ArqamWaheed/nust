@@ -2,19 +2,19 @@
 using namespace std;
 
 int main() {
-    cout << "Enter three angles of the triangle (in degrees), separated by spaces: ";
+    float length, breadth;
 
-    float a, b, c;
-    cin >> a >> b >> c;
+    cout << "Enter length and breadth: ";
+    cin >> length >> breadth;
 
+    float area = length * breadth;
+    float perimeter = 2 * (length + breadth);
 
-    float sum = a + b + c;
-
-    if (sum == 180) {
-        cout << "This is a valid triangle";
+    if (area > perimeter) {
+        cout << "Area is greater than perimeter." << endl;
     } else {
-        cout << "This is an invalid triangle";
+        cout << "Area is not greater than perimeter." << endl;
     }
-
+    
     return 0;
 }
