@@ -2,18 +2,21 @@
 using namespace std;
 
 int main() {
-    float length, breadth;
+    int num;
 
-    cout << "Enter length and breadth: ";
-    cin >> length >> breadth;
+    cout << "Enter a five-digit integer: ";
+    cin >> num;
 
-    float area = length * breadth;
-    float perimeter = 2 * (length + breadth);
+    int d1 = num / 10000;
+    int d2 = (num / 1000) % 10;
+    int d3 = (num / 100) % 10;
+    int d4 = (num / 10) % 10;
+    int d5 = num % 10;
 
-    if (area > perimeter) {
-        cout << "Area is greater than perimeter." << endl;
+    if (d1 == d5 && d2 == d4) {
+        cout << "The number is a palindrome." << endl;
     } else {
-        cout << "Area is not greater than perimeter." << endl;
+        cout << "The number is not a palindrome." << endl;
     }
     
     return 0;
