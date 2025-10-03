@@ -2,13 +2,19 @@
 using namespace std;
 
 int main() {
-    int year;
-    cout << "Input  an year: "; 
-    cin >> year;
-    
-    if (year % 4 == 0) {
-        cout << "This is a leap year";
+    cout << "Enter three angles of the triangle (in degrees), separated by spaces: ";
+
+    float a, b, c;
+    cin >> a >> b >> c;
+
+
+    float sum = a + b + c;
+
+    if (sum == 180) {
+        cout << "This is a valid triangle";
     } else {
-        cout << "This is not a leap year";
+        cout << "This is an invalid triangle";
     }
+
+    return 0;
 }
