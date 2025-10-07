@@ -1,0 +1,132 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  font-family:
+    "Nunito Sans", "Fredoka", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+
+/* Josh cameus CSS reset */
+
+:root {
+    --green: #ebff00;
+    --purple: #3955e8;
+}
+
+body {
+    background-image: url(./images/Background.png);
+    background-repeat: no-repeat; 
+    background-size: cover;
+    color: var(--purple);
+}
+
+.main {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    height: 20%;
+    width: 90%;
+}
+
+.headerbar, .footerbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    height: 60%;
+    width: 100%;
+    background-color: var(--green);
+    border-radius: 50px;
+}
+
+.headerbar p {
+    font-size: 1.5rem;
+}
+
+.headerbar span {
+    font-weight: 700;
+}
+
+.container {
+    color: white;
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    position: relative;
+    left: 20px;
+    font-size: 12rem;
+    bottom: 20px;
+}
+
+.container p {
+    font-size: 2rem;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 90%;
+}
+
+.footerbar p {
+    font-size: 1.5rem;
+}
