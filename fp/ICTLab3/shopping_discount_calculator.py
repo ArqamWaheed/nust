@@ -38,6 +38,7 @@ passengers = 4
 total_cost = (distance / fuel_efficiency) * gas_price
 cost_per_person = total_cost / passengers
 print("Total trip cost:", total_cost)
+print("Cost per passenger:", cost_per_person)
 
 # Task 7
 
