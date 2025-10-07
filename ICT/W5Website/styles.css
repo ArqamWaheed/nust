@@ -130,3 +130,16 @@ body {
 .footerbar p {
     font-size: 1.5rem;
 }
+
+.mk {
+    width: 500px;
+    transform: translate(150%, 90%);
+    z-index: -1;
+}
+
+.weirdguy {
+    rotate: 20deg;
+    width: 500px;
+    transform: translate(-200%, -35%);
+    z-index: -9;
+}
