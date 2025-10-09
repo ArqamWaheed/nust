@@ -35,6 +35,33 @@ select {
   font: inherit;
 }
 
+/* YouTube Button Styles */
+.youtube-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgb(35, 60, 201);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+}
+.youtube-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    background: #e62117;
+}
+.youtube-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+}
+
 p,
 h1,
 h2,
