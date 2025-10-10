@@ -2,18 +2,20 @@
 using namespace std;
 
 int main() {
-    int number, reversed = 0, remainder;
+    int number, temp, remainder, sum = 0;
 
     cout << "Enter a number: ";
     cin >> number;
-
-    while(number != 0) {
-        remainder = number % 10;
-        reversed = reversed * 10 + remainder;
-        number = number / 10;
+    temp = number;
+    while(temp != 0) {
+        remainder = temp % 10;
+        sum = sum + (remainder * remainder * remainder);
+        temp = temp / 10;
     }
-
-    cout << "Reversed number: " << reversed;
+    if(sum == number)
+        cout << "Armstrong number";
+    else
+        cout << "Not an Armstrong number";
 
     return 0;
 }
