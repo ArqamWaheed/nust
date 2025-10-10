@@ -2,20 +2,34 @@
 using namespace std;
 
 int main() {
-    int number, temp, remainder, sum = 0;
+    int choice, num1, num2;
 
-    cout << "Enter a number: ";
-    cin >> number;
-    temp = number;
-    while(temp != 0) {
-        remainder = temp % 10;
-        sum = sum + (remainder * remainder * remainder);
-        temp = temp / 10;
-    }
-    if(sum == number)
-        cout << "Armstrong number";
-    else
-        cout << "Not an Armstrong number";
+    do {
+        cout << "1. Add  2. Subtract  3. Multiply  0. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        if(choice == 0) {
+            break;
+        }
+        cout << "Enter two numbers: ";
+        cin >> num1 >> num2;
+        switch(choice) {
+            case 1:
+                cout << "Result: " << num1 + num2;
+                break;
+            case 2:
+                cout << "Result: " << num1 - num2;
+                break;
+            case 3:
+                cout << "Result: " << num1 * num2;
+                break;
+            default:
+                cout << "Invalid option!";
+        }
+
+        cout << endl;
+
+    } while(choice != 0);
 
     return 0;
 }
