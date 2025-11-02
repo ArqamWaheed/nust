@@ -1,21 +1,22 @@
 #include <iostream>
 using namespace std;
 
-
-void area(); // Function prototype defined here
+// Function prototype now takes float radius and returns float area
+float area(float radius);
 
 int main()
 {
-    area();
-    return 0;
-}
-
-void area() // Function definition here.
-{
-    float area;
     float radius;
     cout << "Enter the radius : ";
     cin >> radius;
-    area = 3.14f * radius * radius;
-    cout << "Area of Circle = " << area << endl;
+    // Changed: Pass radius by value, get area back, display in main
+    float result = area(radius);
+    cout << "Area of Circle = " << result << endl;
+    return 0;
+}
+
+// Function definition now takes radius parameter, calculates and returns area
+float area(float r)
+{
+    return 3.14f * r * r;
 }
