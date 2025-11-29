@@ -2,26 +2,50 @@
 using namespace std;
 
 int main() {
-    int arr[10];
+    double A[3][3];
+    double B[3][3];
+    double C[3][3];
 
-    cout << "Enter 10 numbers (speerate with space):" << endl;
-    for (int i = 0; i < 10; i++) {
-        cin >> arr[i];
+    cout << "Enter 9 elements of first 3x3 matrix (row-wise):" << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cin >> A[i][j];
+        }
     }
 
-    for (int pass = 0; pass < 9; pass++) {
-        for (int j = 0; j < 9 - pass; j++) {
-            if (arr[j] < arr[j+1]) { 
-                int tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
+    cout << "Enter 9 elements of second 3x3 matrix (row-wise):" << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cin >> B[i][j];
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            C[i][j] = 0;
+            for (int k = 0; k < 3; k++) {
+                C[i][j] += A[i][k] * B[k][j];
             }
         }
     }
 
-    cout << "Sorted data (descending):" << endl;
-    for (int i = 0; i < 10; i++) cout << arr[i] << " ";
-    cout << endl;
+    cout << "First matrix:" << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) cout << A[i][j] << " ";
+        cout << endl;
+    }
+
+    cout << "Second matrix:" << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) cout << B[i][j] << " ";
+        cout << endl;
+    }
+
+    cout << "Product matrix (A * B):" << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) cout << C[i][j] << " ";
+        cout << endl;
+    }
 
     return 0;
 }
