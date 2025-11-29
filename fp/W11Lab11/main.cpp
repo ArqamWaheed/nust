@@ -2,54 +2,26 @@
 using namespace std;
 
 int main() {
-    double a[3][3];
+    int arr[10];
 
-    cout << "Enter 9 elements of 3x3 matrix (row-wise):" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cin >> a[i][j];
+    cout << "Enter 10 numbers (speerate with space):" << endl;
+    for (int i = 0; i < 10; i++) {
+        cin >> arr[i];
+    }
+
+    for (int pass = 0; pass < 9; pass++) {
+        for (int j = 0; j < 9 - pass; j++) {
+            if (arr[j] < arr[j+1]) { 
+                int tmp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tmp;
+            }
         }
     }
 
-    cout << "Original matrix:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << a[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    double det = a[0][0] * (a[1][1]*a[2][2] - a[1][2]*a[2][1])
-               - a[0][1] * (a[1][0]*a[2][2] - a[1][2]*a[2][0])
-               + a[0][2] * (a[1][0]*a[2][1] - a[1][1]*a[2][0]);
-
-    double c[3][3];
-    c[0][0] =  (a[1][1]*a[2][2] - a[1][2]*a[2][1]);
-    c[0][1] = -(a[1][0]*a[2][2] - a[1][2]*a[2][0]);
-    c[0][2] =  (a[1][0]*a[2][1] - a[1][1]*a[2][0]);
-
-    c[1][0] = -(a[0][1]*a[2][2] - a[0][2]*a[2][1]);
-    c[1][1] =  (a[0][0]*a[2][2] - a[0][2]*a[2][0]);
-    c[1][2] = -(a[0][0]*a[2][1] - a[0][1]*a[2][0]);
-
-    c[2][0] =  (a[0][1]*a[1][2] - a[0][2]*a[1][1]);
-    c[2][1] = -(a[0][0]*a[1][2] - a[0][2]*a[1][0]);
-    c[2][2] =  (a[0][0]*a[1][1] - a[0][1]*a[1][0]);
-
-    double inv[3][3];
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            inv[i][j] = c[j][i] / det; 
-        }
-    }
-
-    cout << "Inverse matrix:" << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << inv[i][j] << " ";
-        }
-        cout << endl;
-    }
+    cout << "Sorted data (descending):" << endl;
+    for (int i = 0; i < 10; i++) cout << arr[i] << " ";
+    cout << endl;
 
     return 0;
 }
