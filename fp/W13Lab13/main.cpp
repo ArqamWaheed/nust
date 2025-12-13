@@ -1,52 +1,46 @@
 #include <iostream>
 using namespace std;
 
-struct Product {
-    int productID;
-    char productName[30];
-    float price;
-    int quantity;
-    float totalValue;
+struct Student {
+    char name[20];
+    int rollNo;
+    float marks1, marks2, marks3;
+    float total, percentage;
 };
 
 int main() {
-    Product p[4];
+    Student s[5];
     
-    for (int i = 0; i < 4; i++) {
-        cout << "Enter Product ID: ";
-        cin >> p[i].productID;
-        cout << "Enter Product name: ";
-        cin >> p[i].productName;
-        cout << "Enter Price: ";
-        cin >> p[i].price;
-        cout << "Enter Quantity: ";
-        cin >> p[i].quantity;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter name: ";
+        cin >> s[i].name;
+        cout << "Enter roll no: ";
+        cin >> s[i].rollNo;
+        cout << "Enter marks for subject 1: ";
+        cin >> s[i].marks1;
+        cout << "Enter marks for subject 2: ";
+        cin >> s[i].marks2;
+        cout << "Enter marks for subject 3: ";
+        cin >> s[i].marks3;
         
-        p[i].totalValue = p[i].price * p[i].quantity;
+        s[i].total = s[i].marks1 + s[i].marks2 + s[i].marks3;
+        s[i].percentage = s[i].total / 3;
         cout << endl;
     }
     
-    cout << "ID\tName\t\tPrice\tQty\tTotal Value\n";
-    cout << "---------------------------------------------------\n";
-    for (int i = 0; i < 4; i++) {
-        cout << p[i].productID << "\t" << p[i].productName << "\t\t" 
-             << p[i].price << "\t" << p[i].quantity << "\t" 
-             << p[i].totalValue << "\n";
+    cout << "\nStudent Details:\n";
+    for (int i = 0; i < 5; i++) {
+        cout << "Name: " << s[i].name << ", Roll: " << s[i].rollNo 
+             << ", Total: " << s[i].total << ", Percentage: " << s[i].percentage << "%\n";
     }
     
-    int maxPrice = 0;
-    for (int i = 1; i < 4; i++) {
-        if (p[i].price > p[maxPrice].price) maxPrice = i;
+    int best = 0;
+    for (int i = 1; i < 5; i++) {
+        if (s[i].percentage > s[best].percentage) best = i;
     }
-    cout << "\nMost Expensive Product: " << p[maxPrice].productName 
-         << " (Price: " << p[maxPrice].price << ")\n";
     
-    int maxValue = 0;
-    for (int i = 1; i < 4; i++) {
-        if (p[i].totalValue > p[maxValue].totalValue) maxValue = i;
-    }
-    cout << "Product With Largest Stock Value: " << p[maxValue].productName 
-         << " (Total Value: " << p[maxValue].totalValue << ")\n";
+    cout << "\nStudent with highest percentage: " << s[best].name 
+         << " (" << s[best].percentage << "%)\n";
     
     return 0;
 }
