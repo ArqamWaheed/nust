@@ -5,9 +5,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - SimpleInterest",
+            "name": "Debug (Launch) - Swap",
             "request": "launch",
-            "mainClass": "SimpleInterest",
+            "mainClass": "Swap",
             "preLaunchTask": "javac build"
         }
     ]
