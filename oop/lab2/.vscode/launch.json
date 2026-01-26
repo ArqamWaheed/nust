@@ -5,9 +5,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Factorial",
+            "name": "Debug (Launch) - SimpleInterest",
             "request": "launch",
-            "mainClass": "Factorial",
+            "mainClass": "SimpleInterest",
             "preLaunchTask": "javac build"
         }
     ]
