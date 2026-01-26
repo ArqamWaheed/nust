@@ -5,9 +5,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Swap",
+            "name": "Debug (Launch) - Square",
             "request": "launch",
-            "mainClass": "Swap",
+            "mainClass": "Square",
             "preLaunchTask": "javac build"
         }
     ]
