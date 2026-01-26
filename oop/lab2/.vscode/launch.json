@@ -5,9 +5,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Product",
+            "name": "Debug (Launch) - Factorial",
             "request": "launch",
-            "mainClass": "Product",
+            "mainClass": "Factorial",
             "preLaunchTask": "javac build"
         }
     ]
