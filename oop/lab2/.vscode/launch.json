@@ -5,9 +5,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Square",
+            "name": "Debug (Launch) - Temperature",
             "request": "launch",
-            "mainClass": "Square",
+            "mainClass": "Temperature",
             "preLaunchTask": "javac build"
         }
     ]

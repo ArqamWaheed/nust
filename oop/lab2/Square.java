@@ -7,3 +7,4 @@ public class Square {
         System.out.println("Square of " + num + " is: " + square);
     }
 }
+    
