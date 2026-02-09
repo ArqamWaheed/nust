@@ -1,4 +1,3 @@
-// task 5 - all combinations for picking two numbers from 1 to 7
 public class Task5 
 {
     public static void main(String[] args) 

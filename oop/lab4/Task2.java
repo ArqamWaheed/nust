@@ -1,4 +1,3 @@
-// task 2 - compute future tuition
 public class Task2 {
     
     public static void main(String[] args) {

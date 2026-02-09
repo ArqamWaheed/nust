@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// task 3 - find the highest score
 public class Task3 
 {
     public static void main(String[] args) 

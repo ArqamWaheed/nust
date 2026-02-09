@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// task 4 - compare loans with various interest rates
 public class Task4 
 {
     public static void main(String[] args) 
