@@ -1,27 +1,57 @@
+class Date {
+    int m;
+    int d;
+    int y;
+
+    Date(int month, int day, int year) {
+        m = month;
+        d = day;
+        y = year;
+    }
+
+    void setM(int month) { 
+        m = month;
+    }
+
+    int getM() {
+         return m;
+     }
+
+    void setD(int day) {
+         d = day;
+     }
+    int getD() {
+         return d; 
+    }
+
+    void setY(int year) {
+         y = year;
+    }
+    int getY() {
+         return y; 
+    }
+
+    void showDate() {
+        System.out.println(m + "/" + d + "/" + y);
+    }
+}
+
 public class Task2 {
-    
-    public static void main(String[] args) {
-        double currentTuition = 10000.0;
-        double rate = 0.06;
-        int year = 0;
-        
-        // calculate tuition after 10 years
-        double tuitionYear10 = currentTuition;
-        while(year < 10) {
-            tuitionYear10 = tuitionYear10 * (1 + rate);
-            year++;
-        }
-        
-        System.out.println("Tuition in 10 years: $" + String.format("%.2f", tuitionYear10));
-        
-        // calculate 4 years cost after 10th year
-        double total = 0.0;
-        double yearlyTuition = tuitionYear10;
-        for(int i = 1; i <= 4; i++) {
-            yearlyTuition = yearlyTuition * (1 + rate);
-            total = total + yearlyTuition;
-        }
-        
-        System.out.println("Total cost for 4 years after year 10: $" + String.format("%.2f", total));
+    public static void main(String args[]) {
+        Date d1 = new Date(3, 15, 2025);
+        Date d2 = new Date(8, 20, 2024);
+
+        System.out.print("First Date: ");
+        d1.showDate();
+
+        System.out.print("Second Date: ");
+        d2.showDate();
+
+        d1.setM(11);
+        d1.setD(30);
+        d1.setY(2023);
+
+        System.out.print("Updated First Date: ");
+        d1.showDate();
     }
 }
