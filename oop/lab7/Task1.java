@@ -1,55 +1,55 @@
 class Family {
-    String headName;
-    int memberCount;
-    int severityLevel;
-    int daysSinceLastAid;
+    String familyHead;
+    int numMembers;
+    int severity;
+    int daysWithoutAid;
 
-    Family(String headName, int memberCount, int severityLevel, int daysSinceLastAid) {
-        this.headName = headName;
-        this.memberCount = memberCount;
-        this.severityLevel = severityLevel;
-        this.daysSinceLastAid = daysSinceLastAid;
-    }
-
-    void setHeadName(String headName) { 
-        this.headName = headName; 
-    }
-    String getHeadName() { 
-        return headName; 
+    Family(String familyHead, int numMembers, int severity, int daysWithoutAid) {
+        this.familyHead = familyHead;
+        this.numMembers = numMembers;
+        this.severity = severity;
+        this.daysWithoutAid = daysWithoutAid;
     }
 
-    void setMemberCount(int memberCount) { 
-        this.memberCount = memberCount; 
+    void setFamilyHead(String familyHead) { 
+        this.familyHead = familyHead; 
     }
-    int getMemberCount() { 
-        return memberCount; 
-    }
-
-    void setSeverityLevel(int severityLevel) { 
-        this.severityLevel = severityLevel; 
-    }
-    int getSeverityLevel() { 
-        return severityLevel; 
+    String getFamilyHead() { 
+        return familyHead; 
     }
 
-    void setDaysSinceLastAid(int daysSinceLastAid) { 
-        this.daysSinceLastAid = daysSinceLastAid; 
+    void setNumMembers(int numMembers) { 
+        this.numMembers = numMembers; 
     }
-    int getDaysSinceLastAid() { 
-        return daysSinceLastAid; 
-    }
-
-    int calcPackagesRequired() {
-        int packages = (int) Math.ceil(memberCount / 2.0);
-        if(severityLevel == 3)
-            packages = packages + 2;
-        return packages;
+    int getNumMembers() { 
+        return numMembers; 
     }
 
-    String getSeverityLabel() {
-        if(severityLevel == 1)
+    void setSeverity(int severity) { 
+        this.severity = severity; 
+    }
+    int getSeverity() { 
+        return severity; 
+    }
+
+    void setDaysWithoutAid(int daysWithoutAid) { 
+        this.daysWithoutAid = daysWithoutAid; 
+    }
+    int getDaysWithoutAid() { 
+        return daysWithoutAid; 
+    }
+
+    int calcRequiredPackages() {
+        int packs = (int) Math.ceil(numMembers / 2.0);
+        if(severity == 3)
+            packs = packs + 2;
+        return packs;
+    }
+
+    String getSeverityText() {
+        if(severity == 1)
             return "Low";
-        else if(severityLevel == 2)
+        else if(severity == 2)
             return "Medium";
         else
             return "Critical";
@@ -57,75 +57,66 @@ class Family {
 }
 
 class ReliefAllocator {
-    Family families[];
-    int familyCount;
+    Family familyList[];
+    int totalFamilies;
 
-    ReliefAllocator(Family families[], int familyCount) {
-        this.families = families;
-        this.familyCount = familyCount;
+    ReliefAllocator(Family familyList[], int totalFamilies) {
+        this.familyList = familyList;
+        this.totalFamilies = totalFamilies;
     }
 
     int calcTotalPackages() {
-        int total = 0;
-        int i = 0;
-        while(i < familyCount) {
-            total = total + families[i].calcPackagesRequired();
-            i++;
+        int sum = 0;
+        int idx = 0;
+        while(idx < totalFamilies) {
+            sum = sum + familyList[idx].calcRequiredPackages();
+            idx++;
         }
-        return total;
+        return sum;
     }
 
-    Family findImmediatePriority() {
-        Family priority = families[0];
-        int i = 1;
-        while(i < familyCount) {
-            if(families[i].getSeverityLevel() > priority.getSeverityLevel())
-                priority = families[i];
-            else if(families[i].getSeverityLevel() == priority.getSeverityLevel() 
-                     && families[i].getDaysSinceLastAid() > priority.getDaysSinceLastAid())
-                priority = families[i];
-            i++;
+    Family findTopPriority() {
+        Family top = familyList[0];
+        int idx = 1;
+        while(idx < totalFamilies) {
+            if(familyList[idx].getSeverity() > top.getSeverity())
+                top = familyList[idx];
+            else if(familyList[idx].getSeverity() == top.getSeverity() 
+                     && familyList[idx].getDaysWithoutAid() > top.getDaysWithoutAid())
+                top = familyList[idx];
+            idx++;
         }
-        return priority;
+        return top;
     }
 
-    void printAllocationReport() {
-        System.out.println("========================================");
-        System.out.println("   DISASTER RELIEF ALLOCATION REPORT");
-        System.out.println("========================================");
-        int i = 0;
-        while(i < familyCount) {
-            System.out.println("Family Head: " + families[i].getHeadName());
-            System.out.println("Members: " + families[i].getMemberCount());
-            System.out.println("Severity: " + families[i].getSeverityLabel());
-            System.out.println("Days Since Last Aid: " + families[i].getDaysSinceLastAid());
-            System.out.println("Packages Required: " + families[i].calcPackagesRequired());
-            System.out.println("----------------------------------------");
-            i++;
+    void showReport() {
+        int idx = 0;
+        while(idx < totalFamilies) {
+            System.out.println(familyList[idx].getFamilyHead() + ", " + familyList[idx].getNumMembers() 
+                               + ", " + familyList[idx].getSeverityText() + ", " 
+                               + familyList[idx].getDaysWithoutAid() + " days, " 
+                               + familyList[idx].calcRequiredPackages() + " packages");
+            idx++;
         }
-        System.out.println("Total Packages Required: " + calcTotalPackages());
-        Family priority = findImmediatePriority();
-        System.out.println("Immediate Priority: " + priority.getHeadName() 
-                           + " (Severity: " + priority.getSeverityLabel() 
-                           + ", Days: " + priority.getDaysSinceLastAid() + ")");
-        System.out.println("========================================");
+        System.out.println("Total Packages: " + calcTotalPackages());
+        Family top = findTopPriority();
+        System.out.println("Priority: " + top.getFamilyHead() + ", " 
+                           + top.getSeverityText() + ", " + top.getDaysWithoutAid() + " days");
     }
 }
 
 public class Task1 {
     public static void main(String args[]) {
-        Family families[] = new Family[4];
-        families[0] = new Family("Ahmed Khan", 6, 3, 10);
-        families[1] = new Family("Bilal Shah", 4, 1, 3);
-        families[2] = new Family("Kashif Ali", 8, 2, 7);
-        families[3] = new Family("Danish Raza", 3, 3, 15);
+        Family familyList[] = new Family[5];
+        familyList[0] = new Family("Tariq Mehmood", 5, 2, 8);
+        familyList[1] = new Family("Imran Siddiqui", 7, 3, 12);
+        familyList[2] = new Family("Naveed Akhtar", 3, 1, 2);
+        familyList[3] = new Family("Salman Javed", 4, 3, 18);
+        familyList[4] = new Family("Waqas Younis", 6, 2, 5);
 
-        ReliefAllocator allocator = new ReliefAllocator(families, 4);
-        allocator.printAllocationReport();
+        ReliefAllocator allocator = new ReliefAllocator(familyList, 5);
+        allocator.showReport();
 
-        System.out.println();
-        System.out.println("Analyzing single family:");
-        System.out.println("Family Head: " + families[2].getHeadName());
-        System.out.println("Packages Required: " + families[2].calcPackagesRequired());
+        System.out.println(familyList[4].getFamilyHead() + ", " + familyList[4].calcRequiredPackages() + " packages");
     }
 }

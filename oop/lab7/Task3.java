@@ -1,113 +1,104 @@
 class Applicant {
-    String name;
-    int age;
-    double monthlyIncome;
-    int creditScore;
+    String fullName;
+    int applicantAge;
+    double income;
+    int score;
 
-    Applicant(String name, int age, double monthlyIncome, int creditScore) {
-        this.name = name;
-        this.age = age;
-        this.monthlyIncome = monthlyIncome;
-        this.creditScore = creditScore;
-    }
-
-    void setName(String name) { 
-        this.name = name; 
-    }
-    String getName() { 
-        return name; 
+    Applicant(String fullName, int applicantAge, double income, int score) {
+        this.fullName = fullName;
+        this.applicantAge = applicantAge;
+        this.income = income;
+        this.score = score;
     }
 
-    void setAge(int age) { 
-        this.age = age; 
+    void setFullName(String fullName) { 
+        this.fullName = fullName; 
     }
-    int getAge() { 
-        return age; 
-    }
-
-    void setMonthlyIncome(double monthlyIncome) { 
-        this.monthlyIncome = monthlyIncome; 
-    }
-    double getMonthlyIncome() { 
-        return monthlyIncome; 
+    String getFullName() { 
+        return fullName; 
     }
 
-    void setCreditScore(int creditScore) { 
-        this.creditScore = creditScore; 
+    void setApplicantAge(int applicantAge) { 
+        this.applicantAge = applicantAge; 
     }
-    int getCreditScore() { 
-        return creditScore; 
+    int getApplicantAge() { 
+        return applicantAge; 
+    }
+
+    void setIncome(double income) { 
+        this.income = income; 
+    }
+    double getIncome() { 
+        return income; 
+    }
+
+    void setScore(int score) { 
+        this.score = score; 
+    }
+    int getScore() { 
+        return score; 
     }
 }
 
 class LoanEvaluator {
-    Applicant applicants[];
-    int applicantCount;
+    Applicant applicantList[];
+    int numApplicants;
 
-    LoanEvaluator(Applicant applicants[], int applicantCount) {
-        this.applicants = applicants;
-        this.applicantCount = applicantCount;
+    LoanEvaluator(Applicant applicantList[], int numApplicants) {
+        this.applicantList = applicantList;
+        this.numApplicants = numApplicants;
     }
 
-    boolean checkEligibility(Applicant applicant) {
-        if(applicant.getAge() >= 21 && applicant.getMonthlyIncome() >= 50000 && applicant.getCreditScore() >= 650)
+    boolean isEligible(Applicant app) {
+        if(app.getApplicantAge() >= 21 && app.getIncome() >= 50000 && app.getScore() >= 650)
             return true;
         else
             return false;
     }
 
-    String getRejectionReason(Applicant applicant) {
-        String reason = "";
-        if(applicant.getAge() < 21)
-            reason = reason + "Age below 21. ";
-        if(applicant.getMonthlyIncome() < 50000)
-            reason = reason + "Income below 50,000. ";
-        if(applicant.getCreditScore() < 650)
-            reason = reason + "Credit score below 650. ";
-        return reason;
+    String getRejectReason(Applicant app) {
+        String msg = "";
+        if(app.getApplicantAge() < 21)
+            msg = msg + "Age below 21. ";
+        if(app.getIncome() < 50000)
+            msg = msg + "Income below 50,000. ";
+        if(app.getScore() < 650)
+            msg = msg + "Credit score below 650. ";
+        return msg;
     }
 
-    void printEligibilityReport() {
-        System.out.println("========================================");
-        System.out.println("   BANK LOAN ELIGIBILITY REPORT");
-        System.out.println("========================================");
-        int eligible = 0;
-        int i = 0;
-        while(i < applicantCount) {
-            System.out.println("Applicant: " + applicants[i].getName());
-            System.out.println("Age: " + applicants[i].getAge());
-            System.out.println("Monthly Income: Rs. " + applicants[i].getMonthlyIncome());
-            System.out.println("Credit Score: " + applicants[i].getCreditScore());
-            if(checkEligibility(applicants[i])) {
-                System.out.println("Status: ELIGIBLE");
-                eligible++;
+    void showEligibilityReport() {
+        int passed = 0;
+        int idx = 0;
+        while(idx < numApplicants) {
+            System.out.print(applicantList[idx].getFullName() + ", " + applicantList[idx].getApplicantAge() 
+                             + ", " + applicantList[idx].getIncome() 
+                             + ", " + applicantList[idx].getScore());
+            if(isEligible(applicantList[idx])) {
+                System.out.println(", Eligible");
+                passed++;
             }
             else {
-                System.out.println("Status: NOT ELIGIBLE");
-                System.out.println("Reason: " + getRejectionReason(applicants[i]));
+                System.out.println(", Not Eligible, " + getRejectReason(applicantList[idx]));
             }
-            System.out.println("----------------------------------------");
-            i++;
+            idx++;
         }
-        System.out.println("Total Eligible: " + eligible + " out of " + applicantCount);
-        System.out.println("========================================");
+        System.out.println("Total Eligible: " + passed + "/" + numApplicants);
     }
 }
 
 public class Task3 {
     public static void main(String args[]) {
-        Applicant applicants[] = new Applicant[4];
-        applicants[0] = new Applicant("Ahmed Ali", 25, 60000, 700);
-        applicants[1] = new Applicant("Sara Khan", 19, 55000, 680);
-        applicants[2] = new Applicant("Usman Tariq", 30, 45000, 720);
-        applicants[3] = new Applicant("Nadia Shah", 22, 75000, 600);
+        Applicant applicantList[] = new Applicant[5];
+        applicantList[0] = new Applicant("Kamran Akmal", 28, 72000, 710);
+        applicantList[1] = new Applicant("Ayesha Nawaz", 20, 48000, 690);
+        applicantList[2] = new Applicant("Rizwan Sheikh", 35, 55000, 580);
+        applicantList[3] = new Applicant("Hina Pervaiz", 24, 62000, 660);
+        applicantList[4] = new Applicant("Junaid Iqbal", 19, 40000, 550);
 
-        LoanEvaluator evaluator = new LoanEvaluator(applicants, 4);
-        evaluator.printEligibilityReport();
+        LoanEvaluator evaluator = new LoanEvaluator(applicantList, 5);
+        evaluator.showEligibilityReport();
 
-        System.out.println();
-        System.out.println("Checking individual applicant:");
-        System.out.println("Applicant: " + applicants[0].getName());
-        System.out.println("Eligible: " + evaluator.checkEligibility(applicants[0]));
+        System.out.println(applicantList[3].getFullName() + ", Eligible: " + evaluator.isEligible(applicantList[3]));
     }
 }

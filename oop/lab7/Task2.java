@@ -1,145 +1,129 @@
 class Vehicle {
-    String vehicleNumber;
-    String ownerName;
-    double speedRecorded;
-    double allowedSpeed;
-    int previousViolations;
+    String plateNumber;
+    String driverName;
+    double recordedSpeed;
+    double speedLimit;
+    int pastViolations;
 
-    Vehicle(String vehicleNumber, String ownerName, double speedRecorded, double allowedSpeed, int previousViolations) {
-        this.vehicleNumber = vehicleNumber;
-        this.ownerName = ownerName;
-        this.speedRecorded = speedRecorded;
-        this.allowedSpeed = allowedSpeed;
-        this.previousViolations = previousViolations;
-    }
-
-    void setVehicleNumber(String vehicleNumber) { 
-        this.vehicleNumber = vehicleNumber; 
-    }
-    String getVehicleNumber() { 
-        return vehicleNumber; 
+    Vehicle(String plateNumber, String driverName, double recordedSpeed, double speedLimit, int pastViolations) {
+        this.plateNumber = plateNumber;
+        this.driverName = driverName;
+        this.recordedSpeed = recordedSpeed;
+        this.speedLimit = speedLimit;
+        this.pastViolations = pastViolations;
     }
 
-    void setOwnerName(String ownerName) { 
-        this.ownerName = ownerName; 
+    void setPlateNumber(String plateNumber) { 
+        this.plateNumber = plateNumber; 
     }
-    String getOwnerName() { 
-        return ownerName; 
-    }
-
-    void setSpeedRecorded(double speedRecorded) { 
-        this.speedRecorded = speedRecorded; 
-    }
-    double getSpeedRecorded() { 
-        return speedRecorded; 
+    String getPlateNumber() { 
+        return plateNumber; 
     }
 
-    void setAllowedSpeed(double allowedSpeed) { 
-        this.allowedSpeed = allowedSpeed; 
+    void setDriverName(String driverName) { 
+        this.driverName = driverName; 
     }
-    double getAllowedSpeed() { 
-        return allowedSpeed; 
-    }
-
-    void setPreviousViolations(int previousViolations) { 
-        this.previousViolations = previousViolations; 
-    }
-    int getPreviousViolations() { 
-        return previousViolations; 
+    String getDriverName() { 
+        return driverName; 
     }
 
-    boolean isViolation() {
-        return speedRecorded > allowedSpeed;
+    void setRecordedSpeed(double recordedSpeed) { 
+        this.recordedSpeed = recordedSpeed; 
+    }
+    double getRecordedSpeed() { 
+        return recordedSpeed; 
     }
 
-    double calcFine() {
-        if(!isViolation())
+    void setSpeedLimit(double speedLimit) { 
+        this.speedLimit = speedLimit; 
+    }
+    double getSpeedLimit() { 
+        return speedLimit; 
+    }
+
+    void setPastViolations(int pastViolations) { 
+        this.pastViolations = pastViolations; 
+    }
+    int getPastViolations() { 
+        return pastViolations; 
+    }
+
+    boolean hasViolation() {
+        return recordedSpeed > speedLimit;
+    }
+
+    double calcFineAmount() {
+        if(!hasViolation())
             return 0;
-        double fine = 0;
-        double excessSpeed = speedRecorded - allowedSpeed;
-        if(excessSpeed <= 20)
-            fine = 1000;
+        double amount = 0;
+        double overSpeed = recordedSpeed - speedLimit;
+        if(overSpeed <= 20)
+            amount = 1000;
         else
-            fine = 2500;
-        fine = fine + (previousViolations * 500);
-        return fine;
+            amount = 2500;
+        amount = amount + (pastViolations * 500);
+        return amount;
     }
 }
 
 class TrafficMonitor {
-    Vehicle vehicles[];
-    int vehicleCount;
+    Vehicle vehicleRecords[];
+    int numVehicles;
 
-    TrafficMonitor(Vehicle vehicles[], int vehicleCount) {
-        this.vehicles = vehicles;
-        this.vehicleCount = vehicleCount;
+    TrafficMonitor(Vehicle vehicleRecords[], int numVehicles) {
+        this.vehicleRecords = vehicleRecords;
+        this.numVehicles = numVehicles;
     }
 
-    Vehicle findHighestFineVehicle() {
-        Vehicle highest = vehicles[0];
-        int i = 1;
-        while(i < vehicleCount) {
-            if(vehicles[i].calcFine() > highest.calcFine())
-                highest = vehicles[i];
-            i++;
+    Vehicle findMaxFineVehicle() {
+        Vehicle maxFine = vehicleRecords[0];
+        int idx = 1;
+        while(idx < numVehicles) {
+            if(vehicleRecords[idx].calcFineAmount() > maxFine.calcFineAmount())
+                maxFine = vehicleRecords[idx];
+            idx++;
         }
-        return highest;
+        return maxFine;
     }
 
-    double calcTotalFines() {
-        double total = 0;
-        int i = 0;
-        while(i < vehicleCount) {
-            total = total + vehicles[i].calcFine();
-            i++;
+    double calcTotalFineCollected() {
+        double sum = 0;
+        int idx = 0;
+        while(idx < numVehicles) {
+            sum = sum + vehicleRecords[idx].calcFineAmount();
+            idx++;
         }
-        return total;
+        return sum;
     }
 
-    void printViolationReport() {
-        System.out.println("========================================");
-        System.out.println("   TRAFFIC VIOLATION SUMMARY REPORT");
-        System.out.println("========================================");
-        int i = 0;
-        while(i < vehicleCount) {
-            System.out.println("Vehicle: " + vehicles[i].getVehicleNumber());
-            System.out.println("Owner: " + vehicles[i].getOwnerName());
-            System.out.println("Speed: " + vehicles[i].getSpeedRecorded() + " km/h (Limit: " + vehicles[i].getAllowedSpeed() + " km/h)");
-            if(vehicles[i].isViolation()) {
-                System.out.println("Status: VIOLATION");
-                System.out.println("Fine: Rs. " + vehicles[i].calcFine());
-            }
-            else {
-                System.out.println("Status: No Violation");
-                System.out.println("Fine: Rs. 0");
-            }
-            System.out.println("Previous Violations: " + vehicles[i].getPreviousViolations());
-            System.out.println("----------------------------------------");
-            i++;
+    void showViolationSummary() {
+        int idx = 0;
+        while(idx < numVehicles) {
+            System.out.println(vehicleRecords[idx].getPlateNumber() + ", " + vehicleRecords[idx].getDriverName() 
+                               + ", " + vehicleRecords[idx].getRecordedSpeed() + "/" + vehicleRecords[idx].getSpeedLimit() 
+                               + ", " + (vehicleRecords[idx].hasViolation() ? "Violation" : "No Violation") 
+                               + ", Fine: " + vehicleRecords[idx].calcFineAmount() 
+                               + ", Previous: " + vehicleRecords[idx].getPastViolations());
+            idx++;
         }
-        System.out.println("Total Fines Collected: Rs. " + calcTotalFines());
-        Vehicle highest = findHighestFineVehicle();
-        System.out.println("Highest Fine: " + highest.getVehicleNumber() 
-                           + " (" + highest.getOwnerName() + ") - Rs. " + highest.calcFine());
-        System.out.println("========================================");
+        System.out.println("Total Fines: " + calcTotalFineCollected());
+        Vehicle maxFine = findMaxFineVehicle();
+        System.out.println("Highest Fine: " + maxFine.getPlateNumber() + ", " + maxFine.getDriverName() + ", " + maxFine.calcFineAmount());
     }
 }
 
 public class Task2 {
     public static void main(String args[]) {
-        Vehicle vehicles[] = new Vehicle[4];
-        vehicles[0] = new Vehicle("ABC-123", "Ali Raza", 90, 60, 2);
-        vehicles[1] = new Vehicle("DEF-456", "Sara Khan", 55, 60, 0);
-        vehicles[2] = new Vehicle("GHI-789", "Usman Shah", 75, 60, 1);
-        vehicles[3] = new Vehicle("JKL-012", "Nadia Butt", 100, 60, 3);
+        Vehicle vehicleRecords[] = new Vehicle[5];
+        vehicleRecords[0] = new Vehicle("LHR-4521", "Hamza Malik", 85, 60, 1);
+        vehicleRecords[1] = new Vehicle("ISB-7832", "Zainab Aslam", 58, 60, 0);
+        vehicleRecords[2] = new Vehicle("KHI-1190", "Faizan Ahmed", 95, 70, 3);
+        vehicleRecords[3] = new Vehicle("RWP-3345", "Mehwish Hayat", 110, 80, 2);
+        vehicleRecords[4] = new Vehicle("PSH-6678", "Asad Umar", 72, 60, 0);
 
-        TrafficMonitor monitor = new TrafficMonitor(vehicles, 4);
-        monitor.printViolationReport();
+        TrafficMonitor monitor = new TrafficMonitor(vehicleRecords, 5);
+        monitor.showViolationSummary();
 
-        System.out.println();
-        System.out.println("Checking individual vehicle:");
-        System.out.println("Vehicle: " + vehicles[1].getVehicleNumber());
-        System.out.println("Violation: " + vehicles[1].isViolation());
-        System.out.println("Fine: Rs. " + vehicles[1].calcFine());
+        System.out.println(vehicleRecords[1].getPlateNumber() + ", " + vehicleRecords[1].hasViolation() + ", Fine: " + vehicleRecords[1].calcFineAmount());
     }
 }

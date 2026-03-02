@@ -1,58 +1,58 @@
 class Patient {
-    String patientId;
-    String name;
-    double temperature;
-    int heartRate;
+    String id;
+    String patientName;
+    double bodyTemp;
+    int pulse;
 
-    Patient(String patientId, String name, double temperature, int heartRate) {
-        this.patientId = patientId;
-        this.name = name;
-        this.temperature = temperature;
-        this.heartRate = heartRate;
-    }
-
-    void setPatientId(String patientId) { 
-        this.patientId = patientId; 
-    }
-    String getPatientId() { 
-        return patientId; 
+    Patient(String id, String patientName, double bodyTemp, int pulse) {
+        this.id = id;
+        this.patientName = patientName;
+        this.bodyTemp = bodyTemp;
+        this.pulse = pulse;
     }
 
-    void setName(String name) { 
-        this.name = name; 
+    void setId(String id) { 
+        this.id = id; 
     }
-    String getName() { 
-        return name; 
-    }
-
-    void setTemperature(double temperature) { 
-        this.temperature = temperature; 
-    }
-    double getTemperature() { 
-        return temperature; 
+    String getId() { 
+        return id; 
     }
 
-    void setHeartRate(int heartRate) { 
-        this.heartRate = heartRate; 
+    void setPatientName(String patientName) { 
+        this.patientName = patientName; 
     }
-    int getHeartRate() { 
-        return heartRate; 
-    }
-
-    boolean hasFever() {
-        return temperature > 99;
+    String getPatientName() { 
+        return patientName; 
     }
 
-    boolean isCritical() {
-        return heartRate < 50 || heartRate > 120;
+    void setBodyTemp(double bodyTemp) { 
+        this.bodyTemp = bodyTemp; 
+    }
+    double getBodyTemp() { 
+        return bodyTemp; 
     }
 
-    String getHealthStatus() {
-        if(isCritical() && hasFever())
+    void setPulse(int pulse) { 
+        this.pulse = pulse; 
+    }
+    int getPulse() { 
+        return pulse; 
+    }
+
+    boolean checkFever() {
+        return bodyTemp > 99;
+    }
+
+    boolean checkCritical() {
+        return pulse < 50 || pulse > 120;
+    }
+
+    String getCondition() {
+        if(checkCritical() && checkFever())
             return "Critical + Fever";
-        else if(isCritical())
+        else if(checkCritical())
             return "Critical";
-        else if(hasFever())
+        else if(checkFever())
             return "Fever";
         else
             return "Normal";
@@ -60,76 +60,59 @@ class Patient {
 }
 
 class PatientMonitor {
-    Patient patients[];
-    int patientCount;
+    Patient patientRecords[];
+    int numPatients;
 
-    PatientMonitor(Patient patients[], int patientCount) {
-        this.patients = patients;
-        this.patientCount = patientCount;
+    PatientMonitor(Patient patientRecords[], int numPatients) {
+        this.patientRecords = patientRecords;
+        this.numPatients = numPatients;
     }
 
-    int countCriticalPatients() {
-        int count = 0;
-        int i = 0;
-        while(i < patientCount) {
-            if(patients[i].isCritical())
-                count++;
-            i++;
+    int countCritical() {
+        int cnt = 0;
+        int idx = 0;
+        while(idx < numPatients) {
+            if(patientRecords[idx].checkCritical())
+                cnt++;
+            idx++;
         }
-        return count;
+        return cnt;
     }
 
-    void displayFeverPatients() {
-        System.out.println("Patients with Fever:");
-        int i = 0;
-        int found = 0;
-        while(i < patientCount) {
-            if(patients[i].hasFever()) {
-                System.out.println("  - " + patients[i].getName() + " (Temp: " + patients[i].getTemperature() + ")");
-                found++;
-            }
-            i++;
+    void showFeverPatients() {
+        int idx = 0;
+        while(idx < numPatients) {
+            if(patientRecords[idx].checkFever())
+                System.out.println("Fever: " + patientRecords[idx].getPatientName() + ", " + patientRecords[idx].getBodyTemp());
+            idx++;
         }
-        if(found == 0)
-            System.out.println("  None");
     }
 
-    void printMonitoringReport() {
-        System.out.println("========================================");
-        System.out.println("   PATIENT MONITORING REPORT");
-        System.out.println("========================================");
-        int i = 0;
-        while(i < patientCount) {
-            System.out.println("Patient ID: " + patients[i].getPatientId());
-            System.out.println("Name: " + patients[i].getName());
-            System.out.println("Temperature: " + patients[i].getTemperature());
-            System.out.println("Heart Rate: " + patients[i].getHeartRate());
-            System.out.println("Status: " + patients[i].getHealthStatus());
-            System.out.println("----------------------------------------");
-            i++;
+    void displayReport() {
+        int idx = 0;
+        while(idx < numPatients) {
+            System.out.println(patientRecords[idx].getId() + ", " + patientRecords[idx].getPatientName() 
+                               + ", " + patientRecords[idx].getBodyTemp() + ", " + patientRecords[idx].getPulse() 
+                               + ", " + patientRecords[idx].getCondition());
+            idx++;
         }
-        System.out.println("Critical Patients: " + countCriticalPatients());
-        System.out.println();
-        displayFeverPatients();
-        System.out.println("========================================");
+        System.out.println("Critical Patients: " + countCritical());
+        showFeverPatients();
     }
 }
 
 public class Task4 {
     public static void main(String args[]) {
-        Patient patients[] = new Patient[4];
-        patients[0] = new Patient("P001", "Ahmed Khan", 101.5, 85);
-        patients[1] = new Patient("P002", "Sara Ali", 98.6, 45);
-        patients[2] = new Patient("P003", "Bilal Shah", 100.2, 130);
-        patients[3] = new Patient("P004", "Nadia Raza", 97.8, 72);
+        Patient patientRecords[] = new Patient[5];
+        patientRecords[0] = new Patient("PT01", "Farhan Saeed", 100.8, 78);
+        patientRecords[1] = new Patient("PT02", "Saba Qamar", 97.9, 48);
+        patientRecords[2] = new Patient("PT03", "Wahab Riaz", 101.3, 125);
+        patientRecords[3] = new Patient("PT04", "Amna Ilyas", 98.2, 90);
+        patientRecords[4] = new Patient("PT05", "Shahid Afridi", 99.5, 68);
 
-        PatientMonitor monitor = new PatientMonitor(patients, 4);
-        monitor.printMonitoringReport();
+        PatientMonitor monitor = new PatientMonitor(patientRecords, 5);
+        monitor.displayReport();
 
-        System.out.println();
-        System.out.println("Checking individual patient:");
-        System.out.println("Patient: " + patients[0].getName());
-        System.out.println("Has Fever: " + patients[0].hasFever());
-        System.out.println("Is Critical: " + patients[0].isCritical());
+        System.out.println(patientRecords[0].getPatientName() + ", Fever: " + patientRecords[0].checkFever() + ", Critical: " + patientRecords[0].checkCritical());
     }
 }
