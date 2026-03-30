@@ -1,0 +1,59 @@
+DBMS Lab 2 Report
+
+
+Q1. What is a file?
+
+A file is a collection of data stored permanently on disk. It can hold text, numbers or any data. Operating system manages files through file system.
+
+
+Q2. How is file different from database?
+
+File:
+- Raw data, no structure
+- No security
+- Manual searching
+- Data duplication common
+- Single user access
+
+Database:
+- Organized tables with relationships
+- Built-in security and access control
+- Fast queries with SQL
+- Minimal redundancy
+- Multiple users can access together
+
+
+Q3. Difference between text and binary files?
+
+Text Files:
+- Human readable
+- Larger size
+- Slower processing
+- Easy to edit manually
+
+Binary Files:
+- Not readable by humans
+- Compact size
+- Faster read/write
+- Used by DBMS internally
+
+
+Q4. Why DBMS uses files internally?
+
+DBMS needs permanent storage so it uses files on disk. But it adds abstraction layer on top providing indexing, buffering and efficient data management. Users dont deal with files directly.
+
+
+Q5. Limitations of file-based systems?
+
+- Data redundancy (same data in multiple places)
+- Data inconsistency (updates not synced)
+- No standard query method
+- No data integrity rules
+- Poor security
+- Concurrent access problems
+- No crash recovery
+
+
+Observations:
+
+File handling requires manual work for everything. No easy way to search or update specific records. Binary files faster but harder to debug. Managing multiple arrays complicated. DBMS solves all these problems with structured storage and SQL.
