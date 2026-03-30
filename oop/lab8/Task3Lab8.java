@@ -1,19 +1,19 @@
 class Student {
-    String studentId;
+    String rollNo;
     String name;
-    String department;
+    String dept;
 
-    Student(String studentId, String name, String department) {
-        this.studentId = studentId;
+    Student(String rollNo, String name, String dept) {
+        this.rollNo = rollNo;
         this.name = name;
-        this.department = department;
+        this.dept = dept;
     }
 
-    void setStudentId(String studentId) { 
-        this.studentId = studentId; 
+    void setRollNo(String rollNo) { 
+        this.rollNo = rollNo; 
     }
-    String getStudentId() { 
-        return studentId; 
+    String getRollNo() { 
+        return rollNo; 
     }
 
     void setName(String name) { 
@@ -23,192 +23,188 @@ class Student {
         return name; 
     }
 
-    void setDepartment(String department) { 
-        this.department = department; 
+    void setDept(String dept) { 
+        this.dept = dept; 
     }
-    String getDepartment() { 
-        return department; 
+    String getDept() { 
+        return dept; 
     }
 
-    double computeFinalScore() {
+    String evalType() {
+        return "General";
+    }
+
+    double finalScore() {
         return 0.0;
     }
 
-    String categorize() {
-        double score = computeFinalScore();
-        if(score >= 85)
+    String grade() {
+        double s = finalScore();
+        if(s >= 85)
             return "Excellent";
-        else if(score >= 70)
+        else if(s >= 70)
             return "Good";
-        else if(score >= 50)
+        else if(s >= 50)
             return "Needs Improvement";
-        else
-            return "Fail";
-    }
-
-    String getEvaluationType() {
-        return "General";
+        return "Fail";
     }
 }
 
 class ExamStudent extends Student {
-    double midterm;
-    double finalExam;
+    double mid;
+    double fin;
 
-    ExamStudent(String studentId, String name, String department, double midterm, double finalExam) {
-        super(studentId, name, department);
-        this.midterm = midterm;
-        this.finalExam = finalExam;
-    }
-
-    void setMidterm(double midterm) { 
-        this.midterm = midterm; 
-    }
-    double getMidterm() { 
-        return midterm; 
+    ExamStudent(String rollNo, String name, String dept, double mid, double fin) {
+        super(rollNo, name, dept);
+        this.mid = mid;
+        this.fin = fin;
     }
 
-    void setFinalExam(double finalExam) { 
-        this.finalExam = finalExam; 
+    void setMid(double mid) { 
+        this.mid = mid; 
     }
-    double getFinalExam() { 
-        return finalExam; 
-    }
-
-    double computeFinalScore() {
-        return midterm * 0.4 + finalExam * 0.6;
+    double getMid() { 
+        return mid; 
     }
 
-    String getEvaluationType() {
-        return "Exam-Based";
+    void setFin(double fin) { 
+        this.fin = fin; 
+    }
+    double getFin() { 
+        return fin; 
+    }
+
+    String evalType() {
+        return "Exam-Only";
+    }
+
+    double finalScore() {
+        return mid * 0.4 + fin * 0.6;
     }
 }
 
 class ProjectStudent extends Student {
-    double quizAvg;
-    double projectScore;
-    double presentationScore;
+    double quiz;
+    double project;
+    double presentation;
 
-    ProjectStudent(String studentId, String name, String department, 
-                   double quizAvg, double projectScore, double presentationScore) {
-        super(studentId, name, department);
-        this.quizAvg = quizAvg;
-        this.projectScore = projectScore;
-        this.presentationScore = presentationScore;
-    }
-
-    void setQuizAvg(double quizAvg) { 
-        this.quizAvg = quizAvg; 
-    }
-    double getQuizAvg() { 
-        return quizAvg; 
+    ProjectStudent(String rollNo, String name, String dept, 
+                   double quiz, double project, double presentation) {
+        super(rollNo, name, dept);
+        this.quiz = quiz;
+        this.project = project;
+        this.presentation = presentation;
     }
 
-    void setProjectScore(double projectScore) { 
-        this.projectScore = projectScore; 
+    void setQuiz(double quiz) { 
+        this.quiz = quiz; 
     }
-    double getProjectScore() { 
-        return projectScore; 
-    }
-
-    void setPresentationScore(double presentationScore) { 
-        this.presentationScore = presentationScore; 
-    }
-    double getPresentationScore() { 
-        return presentationScore; 
+    double getQuiz() { 
+        return quiz; 
     }
 
-    double computeFinalScore() {
-        return quizAvg * 0.3 + projectScore * 0.4 + presentationScore * 0.3;
+    void setProject(double project) { 
+        this.project = project; 
+    }
+    double getProject() { 
+        return project; 
     }
 
-    String getEvaluationType() {
+    void setPresentation(double presentation) { 
+        this.presentation = presentation; 
+    }
+    double getPresentation() { 
+        return presentation; 
+    }
+
+    String evalType() {
         return "Project-Based";
+    }
+
+    double finalScore() {
+        return quiz * 0.3 + project * 0.4 + presentation * 0.3;
     }
 }
 
 class AttendanceStudent extends ExamStudent {
-    double attendancePercent;
+    double attendance;
 
-    AttendanceStudent(String studentId, String name, String department, 
-                      double midterm, double finalExam, double attendancePercent) {
-        super(studentId, name, department, midterm, finalExam);
-        this.attendancePercent = attendancePercent;
+    AttendanceStudent(String rollNo, String name, String dept, 
+                      double mid, double fin, double attendance) {
+        super(rollNo, name, dept, mid, fin);
+        this.attendance = attendance;
     }
 
-    void setAttendancePercent(double attendancePercent) { 
-        this.attendancePercent = attendancePercent; 
+    void setAttendance(double attendance) { 
+        this.attendance = attendance; 
     }
-    double getAttendancePercent() { 
-        return attendancePercent; 
-    }
-
-    double computeFinalScore() {
-        double examScore = midterm * 0.4 + finalExam * 0.6;
-        return examScore * 0.85 + attendancePercent * 0.15;
+    double getAttendance() { 
+        return attendance; 
     }
 
-    String getEvaluationType() {
-        return "Attendance-Weighted";
+    String evalType() {
+        return "Attendance-Adjusted";
+    }
+
+    double finalScore() {
+        double exam = mid * 0.4 + fin * 0.6;
+        return exam * 0.85 + attendance * 0.15;
     }
 }
 
-class GradingProcessor {
-    Student studentList[];
-    int totalStudents;
+class ResultProcessor {
+    Student students[];
+    int size;
 
-    GradingProcessor(Student studentList[], int totalStudents) {
-        this.studentList = studentList;
-        this.totalStudents = totalStudents;
+    ResultProcessor(Student students[], int size) {
+        this.students = students;
+        this.size = size;
     }
 
-    Student findTopPerformer() {
-        Student top = studentList[0];
-        int idx = 1;
-        while(idx < totalStudents) {
-            if(studentList[idx].computeFinalScore() > top.computeFinalScore())
-                top = studentList[idx];
-            idx++;
+    Student topStudent() {
+        Student best = students[0];
+        int i = 1;
+        while(i < size) {
+            if(students[i].finalScore() > best.finalScore())
+                best = students[i];
+            i++;
         }
-        return top;
+        return best;
     }
 
-    void evaluateSingleStudent(int index) {
-        Student s = studentList[index];
-        System.out.println("Student: " + s.getName() + ", Type: " + s.getEvaluationType() 
-                           + ", Score: " + s.computeFinalScore() 
-                           + ", Category: " + s.categorize());
+    void checkOne(int idx) {
+        Student s = students[idx];
+        System.out.println("Student: " + s.getName() + ", Eval: " + s.evalType() 
+                           + ", Score: " + s.finalScore() + ", Grade: " + s.grade());
     }
 
-    void showReport() {
-        int idx = 0;
-        while(idx < totalStudents) {
-            System.out.println(studentList[idx].getStudentId() + ", " 
-                               + studentList[idx].getName() + ", " 
-                               + studentList[idx].getDepartment() + ", "
-                               + studentList[idx].getEvaluationType() + ", Score: " 
-                               + studentList[idx].computeFinalScore() + ", " 
-                               + studentList[idx].categorize());
-            idx++;
+    void report() {
+        int i = 0;
+        while(i < size) {
+            System.out.println(students[i].getRollNo() + ", " + students[i].getName() 
+                               + ", " + students[i].getDept() + ", " + students[i].evalType() 
+                               + ", Score: " + students[i].finalScore() 
+                               + ", " + students[i].grade());
+            i++;
         }
-        Student top = findTopPerformer();
-        System.out.println("Top Performer: " + top.getName() + ", Score: " + top.computeFinalScore());
+        Student best = topStudent();
+        System.out.println("Top: " + best.getName() + ", Score: " + best.finalScore());
     }
 }
 
 public class Task3Lab8 {
     public static void main(String args[]) {
-        Student studentList[] = new Student[5];
-        studentList[0] = new ExamStudent("S001", "Ali Raza", "CS", 78, 88);
-        studentList[1] = new ProjectStudent("S002", "Fatima Noor", "SE", 80, 90, 85);
-        studentList[2] = new AttendanceStudent("S003", "Hamza Iqbal", "EE", 70, 75, 92);
-        studentList[3] = new ExamStudent("S004", "Zainab Malik", "CS", 55, 60);
-        studentList[4] = new ProjectStudent("S005", "Omar Farooq", "SE", 90, 95, 88);
+        Student students[] = new Student[5];
+        students[0] = new ProjectStudent("R01", "Taimoor Aslam", "SE", 88, 92, 80);
+        students[1] = new ExamStudent("R02", "Saba Perveen", "CS", 72, 65);
+        students[2] = new AttendanceStudent("R03", "Danish Nawaz", "EE", 68, 80, 95);
+        students[3] = new ProjectStudent("R04", "Komal Shahzadi", "SE", 75, 85, 90);
+        students[4] = new ExamStudent("R05", "Junaid Ashraf", "CS", 90, 88);
 
-        GradingProcessor processor = new GradingProcessor(studentList, 5);
-        processor.showReport();
+        ResultProcessor rp = new ResultProcessor(students, 5);
+        rp.report();
 
         System.out.println();
-        processor.evaluateSingleStudent(2);
+        rp.checkOne(0);
     }
 }

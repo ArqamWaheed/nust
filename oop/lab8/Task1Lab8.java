@@ -1,177 +1,180 @@
 class BankAccount {
-    String accountNumber;
-    String holderName;
-    double balance;
+    String accNo;
+    String name;
+    double bal;
 
-    BankAccount(String accountNumber, String holderName, double balance) {
-        this.accountNumber = accountNumber;
-        this.holderName = holderName;
-        this.balance = balance;
-    }
-
-    void setAccountNumber(String accountNumber) { 
-        this.accountNumber = accountNumber; 
-    }
-    String getAccountNumber() { 
-        return accountNumber; 
+    BankAccount(String accNo, String name, double bal) {
+        this.accNo = accNo;
+        this.name = name;
+        this.bal = bal;
     }
 
-    void setHolderName(String holderName) { 
-        this.holderName = holderName; 
+    void setAccNo(String accNo) { 
+        this.accNo = accNo; 
     }
-    String getHolderName() { 
-        return holderName; 
-    }
-
-    void setBalance(double balance) { 
-        this.balance = balance; 
-    }
-    double getBalance() { 
-        return balance; 
+    String getAccNo() { 
+        return accNo; 
     }
 
-    void deposit(double amount) {
-        if(amount > 0)
-            balance = balance + amount;
+    void setName(String name) { 
+        this.name = name; 
+    }
+    String getName() { 
+        return name; 
     }
 
-    void withdraw(double amount) {
-        if(amount > 0 && amount <= balance)
-            balance = balance - amount;
+    void setBal(double bal) { 
+        this.bal = bal; 
+    }
+    double getBal() { 
+        return bal; 
     }
 
-    String getAccountType() {
+    String type() {
         return "General";
+    }
+
+    void deposit(double amt) {
+        if(amt > 0)
+            bal = bal + amt;
+    }
+
+    void withdraw(double amt) {
+        if(amt > 0 && amt <= bal)
+            bal = bal - amt;
     }
 }
 
 class SavingsAccount extends BankAccount {
-    double interestRate;
+    double rate;
 
-    SavingsAccount(String accountNumber, String holderName, double balance, double interestRate) {
-        super(accountNumber, holderName, balance);
-        this.interestRate = interestRate;
+    SavingsAccount(String accNo, String name, double bal, double rate) {
+        super(accNo, name, bal);
+        this.rate = rate;
     }
 
-    void setInterestRate(double interestRate) { 
-        this.interestRate = interestRate; 
+    void setRate(double rate) { 
+        this.rate = rate; 
     }
-    double getInterestRate() { 
-        return interestRate; 
-    }
-
-    double calculateInterest() {
-        return balance * interestRate / 100.0;
+    double getRate() { 
+        return rate; 
     }
 
-    void applyInterest() {
-        balance = balance + calculateInterest();
-    }
-
-    String getAccountType() {
+    String type() {
         return "Savings";
+    }
+
+    double calcInterest() {
+        return bal * rate / 100.0;
+    }
+
+    void addInterest() {
+        bal = bal + calcInterest();
     }
 }
 
 class CurrentAccount extends BankAccount {
-    double overdraftLimit;
+    double limit;
 
-    CurrentAccount(String accountNumber, String holderName, double balance, double overdraftLimit) {
-        super(accountNumber, holderName, balance);
-        this.overdraftLimit = overdraftLimit;
+    CurrentAccount(String accNo, String name, double bal, double limit) {
+        super(accNo, name, bal);
+        this.limit = limit;
     }
 
-    void setOverdraftLimit(double overdraftLimit) { 
-        this.overdraftLimit = overdraftLimit; 
+    void setLimit(double limit) { 
+        this.limit = limit; 
     }
-    double getOverdraftLimit() { 
-        return overdraftLimit; 
-    }
-
-    void withdraw(double amount) {
-        if(amount > 0 && amount <= balance + overdraftLimit)
-            balance = balance - amount;
+    double getLimit() { 
+        return limit; 
     }
 
-    String getAccountType() {
+    String type() {
         return "Current";
+    }
+
+    void withdraw(double amt) {
+        if(amt > 0 && amt <= bal + limit)
+            bal = bal - amt;
     }
 }
 
-class BankProcessor {
-    BankAccount accountList[];
-    int totalAccounts;
+class BankManager {
+    BankAccount accounts[];
+    int count;
 
-    BankProcessor(BankAccount accountList[], int totalAccounts) {
-        this.accountList = accountList;
-        this.totalAccounts = totalAccounts;
+    BankManager(BankAccount accounts[], int count) {
+        this.accounts = accounts;
+        this.count = count;
     }
 
-    double calcTotalBalance() {
-        double sum = 0;
-        int idx = 0;
-        while(idx < totalAccounts) {
-            sum = sum + accountList[idx].getBalance();
-            idx++;
+    void printAll() {
+        int i = 0;
+        while(i < count) {
+            System.out.println(accounts[i].getAccNo() + ", " 
+                               + accounts[i].getName() + ", " 
+                               + accounts[i].type() + ", Bal: " 
+                               + accounts[i].getBal());
+            i++;
         }
-        return sum;
     }
 
-    BankAccount findHighestBalanceAfterInterest() {
-        BankAccount top = accountList[0];
-        double topBal = accountList[0].getBalance();
-        if(accountList[0] instanceof SavingsAccount)
-            topBal = topBal + ((SavingsAccount) accountList[0]).calculateInterest();
+    double totalBalance() {
+        double total = 0;
+        int i = 0;
+        while(i < count) {
+            total = total + accounts[i].getBal();
+            i++;
+        }
+        return total;
+    }
 
-        int idx = 1;
-        while(idx < totalAccounts) {
-            double bal = accountList[idx].getBalance();
-            if(accountList[idx] instanceof SavingsAccount)
-                bal = bal + ((SavingsAccount) accountList[idx]).calculateInterest();
-            if(bal > topBal) {
-                top = accountList[idx];
-                topBal = bal;
+    BankAccount highestAfterInterest() {
+        BankAccount best = accounts[0];
+        double bestBal = accounts[0].getBal();
+        if(accounts[0] instanceof SavingsAccount)
+            bestBal = bestBal + ((SavingsAccount) accounts[0]).calcInterest();
+
+        int i = 1;
+        while(i < count) {
+            double b = accounts[i].getBal();
+            if(accounts[i] instanceof SavingsAccount)
+                b = b + ((SavingsAccount) accounts[i]).calcInterest();
+            if(b > bestBal) {
+                best = accounts[i];
+                bestBal = b;
             }
-            idx++;
+            i++;
         }
-        return top;
+        return best;
     }
 
-    void showReport() {
-        int idx = 0;
-        while(idx < totalAccounts) {
-            System.out.println(accountList[idx].getAccountNumber() + ", " 
-                               + accountList[idx].getHolderName() + ", " 
-                               + accountList[idx].getAccountType() + ", Balance: " 
-                               + accountList[idx].getBalance());
-            idx++;
-        }
-        System.out.println("Total Bank Balance: " + calcTotalBalance());
-        BankAccount top = findHighestBalanceAfterInterest();
-        System.out.println("Highest Balance After Interest: " + top.getHolderName() 
-                           + ", " + top.getBalance());
+    void report() {
+        printAll();
+        System.out.println("Total Balance: " + totalBalance());
+        BankAccount best = highestAfterInterest();
+        System.out.println("Highest After Interest: " + best.getName() 
+                           + ", Bal: " + best.getBal());
     }
 }
 
 public class Task1Lab8 {
     public static void main(String args[]) {
-        BankAccount accountList[] = new BankAccount[5];
-        accountList[0] = new SavingsAccount("SA001", "Ahmed Khan", 50000, 5.0);
-        accountList[1] = new CurrentAccount("CA001", "Sara Ali", 30000, 10000);
-        accountList[2] = new SavingsAccount("SA002", "Bilal Tariq", 75000, 4.5);
-        accountList[3] = new CurrentAccount("CA002", "Hina Rauf", 20000, 5000);
-        accountList[4] = new SavingsAccount("SA003", "Usman Javed", 60000, 6.0);
+        BankAccount accounts[] = new BankAccount[5];
+        accounts[0] = new CurrentAccount("C101", "Waseem Akram", 45000, 8000);
+        accounts[1] = new SavingsAccount("S101", "Noman Sheikh", 62000, 4.0);
+        accounts[2] = new SavingsAccount("S102", "Ayesha Baig", 80000, 5.5);
+        accounts[3] = new CurrentAccount("C102", "Rizwan Haider", 15000, 6000);
+        accounts[4] = new SavingsAccount("S103", "Tahira Begum", 55000, 3.5);
 
-        ((SavingsAccount) accountList[0]).applyInterest();
-        ((SavingsAccount) accountList[2]).applyInterest();
-        ((SavingsAccount) accountList[4]).applyInterest();
+        accounts[0].deposit(10000);
+        ((SavingsAccount) accounts[1]).addInterest();
+        ((SavingsAccount) accounts[2]).addInterest();
+        accounts[3].withdraw(18000);
+        ((SavingsAccount) accounts[4]).addInterest();
 
-        accountList[1].deposit(5000);
-        accountList[3].withdraw(22000);
+        BankManager mgr = new BankManager(accounts, 5);
+        mgr.report();
 
-        BankProcessor processor = new BankProcessor(accountList, 5);
-        processor.showReport();
-
-        System.out.println(accountList[2].getHolderName() + ", Balance: " + accountList[2].getBalance());
+        System.out.println(accounts[1].getName() + ", Bal: " + accounts[1].getBal());
     }
 }

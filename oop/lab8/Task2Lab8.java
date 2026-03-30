@@ -1,25 +1,25 @@
 class Patient {
-    String patientId;
+    String pid;
     String name;
     int age;
-    int heartRate;
-    double temperature;
-    int severityLevel;
+    double temp;
+    int pulse;
+    int severity;
 
-    Patient(String patientId, String name, int age, int heartRate, double temperature, int severityLevel) {
-        this.patientId = patientId;
+    Patient(String pid, String name, int age, double temp, int pulse, int severity) {
+        this.pid = pid;
         this.name = name;
         this.age = age;
-        this.heartRate = heartRate;
-        this.temperature = temperature;
-        this.severityLevel = severityLevel;
+        this.temp = temp;
+        this.pulse = pulse;
+        this.severity = severity;
     }
 
-    void setPatientId(String patientId) { 
-        this.patientId = patientId; 
+    void setPid(String pid) { 
+        this.pid = pid; 
     }
-    String getPatientId() { 
-        return patientId; 
+    String getPid() { 
+        return pid; 
     }
 
     void setName(String name) { 
@@ -36,204 +36,196 @@ class Patient {
         return age; 
     }
 
-    void setHeartRate(int heartRate) { 
-        this.heartRate = heartRate; 
+    void setTemp(double temp) { 
+        this.temp = temp; 
     }
-    int getHeartRate() { 
-        return heartRate; 
-    }
-
-    void setTemperature(double temperature) { 
-        this.temperature = temperature; 
-    }
-    double getTemperature() { 
-        return temperature; 
+    double getTemp() { 
+        return temp; 
     }
 
-    void setSeverityLevel(int severityLevel) { 
-        this.severityLevel = severityLevel; 
+    void setPulse(int pulse) { 
+        this.pulse = pulse; 
     }
-    int getSeverityLevel() { 
-        return severityLevel; 
+    int getPulse() { 
+        return pulse; 
     }
 
-    String evaluateHealth() {
-        if(severityLevel >= 3)
+    void setSeverity(int severity) { 
+        this.severity = severity; 
+    }
+    int getSeverity() { 
+        return severity; 
+    }
+
+    String checkHealth() {
+        if(severity >= 3)
             return "Critical";
-        else if(severityLevel == 2)
+        else if(severity == 2)
             return "Moderate";
-        else
-            return "Stable";
+        return "Stable";
     }
 
-    int getMonitoringFrequency() {
-        return 60;
-    }
-
-    String getPatientType() {
+    String kind() {
         return "General";
     }
+
+    int monitorGap() {
+        return 60;
+    }
 }
 
-class CardiacPatient extends Patient {
-    int bloodPressureSystolic;
-    int bloodPressureDiastolic;
+class HeartPatient extends Patient {
+    int sysBP;
+    int diaBP;
 
-    CardiacPatient(String patientId, String name, int age, int heartRate, double temperature, 
-                   int severityLevel, int bloodPressureSystolic, int bloodPressureDiastolic) {
-        super(patientId, name, age, heartRate, temperature, severityLevel);
-        this.bloodPressureSystolic = bloodPressureSystolic;
-        this.bloodPressureDiastolic = bloodPressureDiastolic;
-    }
-
-    void setBloodPressureSystolic(int bloodPressureSystolic) { 
-        this.bloodPressureSystolic = bloodPressureSystolic; 
-    }
-    int getBloodPressureSystolic() { 
-        return bloodPressureSystolic; 
+    HeartPatient(String pid, String name, int age, double temp, int pulse, 
+                 int severity, int sysBP, int diaBP) {
+        super(pid, name, age, temp, pulse, severity);
+        this.sysBP = sysBP;
+        this.diaBP = diaBP;
     }
 
-    void setBloodPressureDiastolic(int bloodPressureDiastolic) { 
-        this.bloodPressureDiastolic = bloodPressureDiastolic; 
+    void setSysBP(int sysBP) { 
+        this.sysBP = sysBP; 
     }
-    int getBloodPressureDiastolic() { 
-        return bloodPressureDiastolic; 
+    int getSysBP() { 
+        return sysBP; 
     }
 
-    String evaluateHealth() {
-        if(heartRate > 120 || bloodPressureSystolic > 180)
+    void setDiaBP(int diaBP) { 
+        this.diaBP = diaBP; 
+    }
+    int getDiaBP() { 
+        return diaBP; 
+    }
+
+    String kind() {
+        return "Heart";
+    }
+
+    String checkHealth() {
+        if(pulse > 120 || sysBP > 180)
             return "Critical";
-        else if(heartRate > 100 || bloodPressureSystolic > 140)
+        else if(pulse > 100 || sysBP > 140)
             return "Moderate";
-        else
-            return "Stable";
+        return "Stable";
     }
 
-    int getMonitoringFrequency() {
-        if(severityLevel >= 3)
+    int monitorGap() {
+        if(severity >= 3)
             return 5;
-        else
-            return 15;
-    }
-
-    String getPatientType() {
-        return "Cardiac";
+        return 15;
     }
 }
 
-class InfectiousPatient extends Patient {
-    String infectionType;
-    boolean isQuarantined;
+class InfectionPatient extends Patient {
+    String disease;
+    boolean quarantined;
 
-    InfectiousPatient(String patientId, String name, int age, int heartRate, double temperature, 
-                      int severityLevel, String infectionType, boolean isQuarantined) {
-        super(patientId, name, age, heartRate, temperature, severityLevel);
-        this.infectionType = infectionType;
-        this.isQuarantined = isQuarantined;
-    }
-
-    void setInfectionType(String infectionType) { 
-        this.infectionType = infectionType; 
-    }
-    String getInfectionType() { 
-        return infectionType; 
+    InfectionPatient(String pid, String name, int age, double temp, int pulse, 
+                     int severity, String disease, boolean quarantined) {
+        super(pid, name, age, temp, pulse, severity);
+        this.disease = disease;
+        this.quarantined = quarantined;
     }
 
-    void setIsQuarantined(boolean isQuarantined) { 
-        this.isQuarantined = isQuarantined; 
+    void setDisease(String disease) { 
+        this.disease = disease; 
     }
-    boolean getIsQuarantined() { 
-        return isQuarantined; 
+    String getDisease() { 
+        return disease; 
     }
 
-    String evaluateHealth() {
-        if(temperature > 103.0 || severityLevel >= 3)
+    void setQuarantined(boolean quarantined) { 
+        this.quarantined = quarantined; 
+    }
+    boolean getQuarantined() { 
+        return quarantined; 
+    }
+
+    String kind() {
+        return "Infection";
+    }
+
+    String checkHealth() {
+        if(temp > 103.0 || severity >= 3)
             return "Critical";
-        else if(temperature > 100.0 || severityLevel == 2)
+        else if(temp > 100.0 || severity == 2)
             return "Moderate";
-        else
-            return "Stable";
+        return "Stable";
     }
 
-    int getMonitoringFrequency() {
-        if(isQuarantined)
+    int monitorGap() {
+        if(quarantined)
             return 10;
-        else
-            return 30;
-    }
-
-    String getPatientType() {
-        return "Infectious";
+        return 30;
     }
 }
 
-class HospitalMonitor {
-    Patient patientList[];
-    int totalPatients;
+class PatientTracker {
+    Patient list[];
+    int total;
 
-    HospitalMonitor(Patient patientList[], int totalPatients) {
-        this.patientList = patientList;
-        this.totalPatients = totalPatients;
+    PatientTracker(Patient list[], int total) {
+        this.list = list;
+        this.total = total;
     }
 
-    int countCritical() {
-        int count = 0;
-        int idx = 0;
-        while(idx < totalPatients) {
-            if(patientList[idx].evaluateHealth().equals("Critical"))
-                count++;
-            idx++;
+    int criticalCount() {
+        int c = 0;
+        int i = 0;
+        while(i < total) {
+            if(list[i].checkHealth().equals("Critical"))
+                c++;
+            i++;
         }
-        return count;
+        return c;
     }
 
-    void showCriticalPatients() {
-        int idx = 0;
-        System.out.println("Critical Patients:");
-        while(idx < totalPatients) {
-            if(patientList[idx].evaluateHealth().equals("Critical"))
-                System.out.println(patientList[idx].getPatientId() + ", " 
-                                   + patientList[idx].getName() + ", " 
-                                   + patientList[idx].getPatientType());
-            idx++;
+    void listCritical() {
+        System.out.println("--- Critical ---");
+        int i = 0;
+        while(i < total) {
+            if(list[i].checkHealth().equals("Critical"))
+                System.out.println(list[i].getPid() + ", " + list[i].getName() 
+                                   + ", " + list[i].kind());
+            i++;
         }
     }
 
-    void evaluateSinglePatient(int index) {
-        Patient p = patientList[index];
-        System.out.println("Patient: " + p.getName() + ", Type: " + p.getPatientType() 
-                           + ", Status: " + p.evaluateHealth() 
-                           + ", Monitor Every: " + p.getMonitoringFrequency() + " mins");
+    void checkOne(int idx) {
+        Patient p = list[idx];
+        System.out.println("Patient: " + p.getName() + ", Kind: " + p.kind() 
+                           + ", Health: " + p.checkHealth() 
+                           + ", Every " + p.monitorGap() + " mins");
     }
 
-    void showReport() {
-        int idx = 0;
-        while(idx < totalPatients) {
-            System.out.println(patientList[idx].getPatientId() + ", " 
-                               + patientList[idx].getName() + ", " 
-                               + patientList[idx].getPatientType() + ", " 
-                               + patientList[idx].evaluateHealth() + ", Monitor: " 
-                               + patientList[idx].getMonitoringFrequency() + " mins");
-            idx++;
+    void report() {
+        int i = 0;
+        while(i < total) {
+            System.out.println(list[i].getPid() + ", " + list[i].getName() 
+                               + ", " + list[i].kind() + ", " + list[i].checkHealth() 
+                               + ", Every " + list[i].monitorGap() + " mins");
+            i++;
         }
-        System.out.println("Total Critical: " + countCritical());
-        showCriticalPatients();
+        System.out.println("Critical Count: " + criticalCount());
+        listCritical();
     }
 }
 
 public class Task2Lab8 {
     public static void main(String args[]) {
-        Patient patientList[] = new Patient[5];
-        patientList[0] = new CardiacPatient("P001", "Kamran Shah", 55, 130, 98.6, 3, 185, 110);
-        patientList[1] = new InfectiousPatient("P002", "Nadia Farooq", 30, 85, 104.2, 2, "Typhoid", true);
-        patientList[2] = new CardiacPatient("P003", "Rehan Malik", 60, 95, 97.8, 1, 130, 85);
-        patientList[3] = new InfectiousPatient("P004", "Sana Akram", 25, 78, 99.5, 1, "Flu", false);
-        patientList[4] = new CardiacPatient("P005", "Faisal Iqbal", 48, 110, 98.2, 2, 150, 95);
+        Patient list[] = new Patient[5];
+        list[0] = new InfectionPatient("H01", "Asad Rafi", 28, 104.5, 88, 3, "Dengue", true);
+        list[1] = new HeartPatient("H02", "Sajid Awan", 62, 98.1, 125, 3, 190, 105);
+        list[2] = new InfectionPatient("H03", "Maryam Latif", 35, 99.2, 76, 1, "Flu", false);
+        list[3] = new HeartPatient("H04", "Zubair Anwar", 50, 97.9, 92, 2, 135, 88);
+        list[4] = new InfectionPatient("H05", "Rabia Naz", 40, 101.3, 82, 2, "Malaria", true);
 
-        HospitalMonitor monitor = new HospitalMonitor(patientList, 5);
-        monitor.showReport();
+        PatientTracker tracker = new PatientTracker(list, 5);
+        tracker.report();
 
         System.out.println();
-        monitor.evaluateSinglePatient(3);
+        tracker.checkOne(2);
     }
 }
