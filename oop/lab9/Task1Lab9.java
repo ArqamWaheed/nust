@@ -1,107 +1,64 @@
-class Shape {
-    double calculateArea() {
-        return 0;
-    }
-
-    void displayArea() {
-        System.out.println("Area: " + calculateArea());
-    }
-}
-
-class Circle extends Shape {
-    double radius;
-
-    Circle(double radius) {
-        this.radius = radius;
-    }
-
-    void setRadius(double radius) { 
-        this.radius = radius; 
-    }
-    double getRadius() { 
-        return radius; 
-    }
-
-    double calculateArea() {
-        return Math.PI * radius * radius;
-    }
-
-    double calculateArea(double r) {
-        return Math.PI * r * r;
-    }
-}
-
-class Square extends Shape {
-    double side;
-
-    Square(double side) {
-        this.side = side;
-    }
-
-    void setSide(double side) { 
-        this.side = side; 
-    }
-    double getSide() { 
-        return side; 
-    }
-
-    double calculateArea() {
-        return side * side;
-    }
-
-    double calculateArea(double s) {
-        return s * s;
-    }
-}
-
-class Triangle extends Shape {
-    double base;
-    double height;
-
-    Triangle(double base, double height) {
-        this.base = base;
-        this.height = height;
-    }
-
-    void setBase(double base) { 
-        this.base = base; 
-    }
-    double getBase() { 
-        return base; 
-    }
-
-    void setHeight(double height) { 
-        this.height = height; 
-    }
-    double getHeight() { 
-        return height; 
-    }
-
-    double calculateArea() {
-        return 0.5 * base * height;
-    }
-
-    double calculateArea(double b, double h) {
-        return 0.5 * b * h;
-    }
-}
+import java.util.Scanner;
 
 public class Task1Lab9 {
-    public static void main(String args[]) {
-        Circle circle = new Circle(5.0);
-        Square square = new Square(4.0);
-        Triangle triangle = new Triangle(6.0, 3.0);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double balance = 2000.0;
 
-        Shape shapes[] = { circle, square, triangle };
+        while (true) {
+            System.out.println();
+            System.out.println("--- ATM ---");
+            System.out.println("1) Withdraw");
+            System.out.println("2) Deposit");
+            System.out.println("3) Check balance");
+            System.out.println("4) Exit");
+            System.out.print("Choose: ");
 
-        int i = 0;
-        while(i < shapes.length) {
-            System.out.println("Shape " + (i + 1) + " area: " + shapes[i].calculateArea());
-            i++;
+            String line = sc.nextLine();
+            try {
+                int choice = Integer.parseInt(line.trim());
+                switch (choice) {
+                    case 1:
+                        System.out.print("Amount to withdraw: ");
+                        String a1 = sc.nextLine();
+                        double amt1 = Double.parseDouble(a1.trim());
+                        if (amt1 <= 0) {
+                            System.out.println("Amount must be positive");
+                            break;
+                        }
+                        if (amt1 > balance) {
+                            System.out.println("Insufficient funds");
+                            break;
+                        }
+                        balance -= amt1;
+                        System.out.println("Withdrawn " + amt1 + ", balance: " + balance);
+                        break;
+                    case 2:
+                        System.out.print("Amount to deposit: ");
+                        String a2 = sc.nextLine();
+                        double amt2 = Double.parseDouble(a2.trim());
+                        if (amt2 <= 0) {
+                            System.out.println("Amount must be positive");
+                            break;
+                        }
+                        balance += amt2;
+                        System.out.println("Deposited " + amt2 + ", balance: " + balance);
+                        break;
+                    case 3:
+                        System.out.println("Balance: " + balance);
+                        break;
+                    case 4:
+                        System.out.println("Goodbye");
+                        sc.close();
+                        return;
+                    default:
+                        System.out.println("Please choose 1-4");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, enter a number");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
         }
-
-        System.out.println("Circle area with radius 7: " + circle.calculateArea(7.0));
-        System.out.println("Square area with side 9: " + square.calculateArea(9.0));
-        System.out.println("Triangle area with base 10 height 5: " + triangle.calculateArea(10.0, 5.0));
     }
 }

@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Task1Lab9",
+            "request": "launch",
+            "mainClass": "Task1Lab9",
+            "projectName": "lab9_5966653b"
+        },
+        {
+            "type": "java",
             "name": "Run Current File",
             "request": "launch",
             "mainClass": "${file}"
