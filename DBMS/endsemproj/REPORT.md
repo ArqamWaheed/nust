@@ -27,8 +27,9 @@
 14. [Group Collaboration & Workflow](#14-group-collaboration--workflow)
 15. [Mapping to Complex Computing Problem Attributes (WP1, WP3, WP6)](#15-mapping-to-complex-computing-problem-attributes-wp1-wp3-wp6)
 16. [Conclusion](#16-conclusion)
-17. [Appendix A — Sample Data Snapshot](#appendix-a--sample-data-snapshot)
-18. [Appendix B — Submission Files](#appendix-b--submission-files)
+17. [Application Layer — JDBC TUI Client](#17-application-layer--jdbc-tui-client)
+18. [Appendix A — Sample Data Snapshot](#appendix-a--sample-data-snapshot)
+19. [Appendix B — Submission Files](#appendix-b--submission-files)
 
 ---
 
@@ -173,6 +174,8 @@ The brief explicitly requires us to justify our DBMS family choice. We chose a *
 ## 6. Entity-Relationship Diagram (ERD)
 
 ### 6.1 Entities & Relationships (Crow’s-Foot notation)
+
+![Entity-Relationship Diagram](_media/image1.png)
 
 ```
 USERS (1) ─────< OWNS >─── (N) ACCOUNTS
@@ -556,6 +559,80 @@ This project takes a relatable, real-world Pakistani consumer scenario — money
 
 ---
 
+## 17. Application Layer — JDBC TUI Client
+
+To demonstrate that the schema is not a paper artefact but a **live, queryable system**, the submission ships with `FinanceApp.java` — a deliberately minimal, single-file Java text-user-interface (TUI) built directly on **JDBC** and the official `mysql-connector-j-8.4.0` driver. The client is intentionally small (under 250 lines) so the focus stays on the database layer that this course assesses, while still exercising every non-trivial piece of the schema.
+
+### 17.1 Why JDBC and Why a TUI
+
+JDBC is the standard Java/SQL bridge taught in this course; it forces every query through a **`PreparedStatement`**, which (a) eliminates SQL injection and (b) cleanly separates parameters from query text. A TUI was chosen over a GUI because the rubric rewards *“thoughtful decision-making in how data is structured, stored, accessed, and maintained”* — a TUI keeps the spotlight on those decisions rather than on UI work that is out of scope.
+
+### 17.2 Features Mapped to the Schema
+
+| Menu option | Underlying schema artefact exercised |
+|---|---|
+| 1. List Users | `users` table, role enum |
+| 2. List Accounts (with balance) | 3-way `JOIN` over `accounts`, `users`, `account_types`; reads denormalised `balance` |
+| 3. Add Transaction (income / expense) | `INSERT` into `transactions`; trigger `trg_txn_after_insert` updates `accounts.balance` automatically |
+| 4. Transfer Between Accounts | `CallableStatement` invoking `sp_record_transfer`, exercising the atomic double-entry stored procedure |
+| 5. View Net Worth | View `v_net_worth` (cash + investments converted to PKR) |
+| 6. View Budget Status | View `v_budget_status` (budget vs actual, parameterised by `user_id`) |
+| 7. View Portfolio | View `v_portfolio` (live ROI with `LEFT JOIN` to latest `asset_prices`) |
+
+This single screen therefore touches **every category of database object** built in §9: tables, indexes, triggers, stored procedures, and views.
+
+### 17.3 Engineering Practices Demonstrated
+
+| Practice | How it appears in `FinanceApp.java` |
+|---|---|
+| **No SQL injection** | Every user-supplied value is bound with `PreparedStatement.setXxx(...)`; no string concatenation into SQL |
+| **Resource safety** | `try-with-resources` on `Connection`, `PreparedStatement`, `ResultSet`, `Scanner`, and `Statement` |
+| **Per-action error handling** | Each menu action catches `SQLException` locally and returns to the menu, so one bad input never crashes the session |
+| **Externalised credentials** | URL, user, and password are loaded from `db.properties` (gitignored). A `db.properties.example` template ships with the repo |
+| **Self-bootstrapping** | On first run the client checks `information_schema` for the `finance_tracker` database; if absent it executes `schema.sql` and `sample_data.sql` automatically. A small SQL splitter respects `DELIMITER $$` blocks so the triggers and the `sp_record_transfer` procedure load correctly |
+| **Atomic transfers** | The transfer menu calls the stored procedure rather than issuing two `INSERT`s from Java — guaranteeing the double-entry pair is committed together by the database, not by the client |
+
+### 17.4 How to Run
+
+```
+cp db.properties.example db.properties     # then edit credentials
+javac FinanceApp.java
+java -cp .:mysql-connector-j-8.4.0.jar FinanceApp
+```
+
+A `db.properties` looks like:
+
+```
+url=jdbc:mysql://localhost:3306/finance_tracker
+user=finance
+password=Finance@123!
+```
+
+On first launch the user sees:
+
+```
+Database 'finance_tracker' not found. Loading schema.sql ...
+Schema loaded. Loading sample_data.sql ...
+Sample data loaded.
+Connected to MySQL (finance_tracker) successfully.
+
+===== Finance Tracker =====
+1. List Users
+2. List Accounts (with balance)
+3. Add Transaction (income / expense)
+4. Transfer Between Accounts
+5. View Net Worth
+6. View Budget Status
+7. View Portfolio
+8. Exit
+```
+
+### 17.5 What This Adds to the Project
+
+The JDBC client closes the loop between the **conceptual model (ERD, normalisation, RA)**, the **physical model (DDL, indexes, triggers, views, procedures)**, and an **executing application** that proves all of it works end-to-end. It is also the artefact most directly relevant to the *“analyse and justify design choices in real-world contexts”* CLO3 outcome: every menu option can be traced back to a specific design decision elsewhere in this report.
+
+---
+
 ## Appendix A — Sample Data Snapshot
 
 After loading `schema.sql` and `sample_data.sql`, the following high-level numbers are produced (extract from `v_net_worth`):
@@ -585,22 +662,30 @@ A representative portfolio view for user 1 (PKR-equivalent):
 | ETH  (USD) | 0.80|  2,200  |  2,900  | +560 USD    | +31.8 % |
 | XAU  (PKR) | 20  | 23,500  | 26,500  | +60,000 PKR | +12.8 % |
 
----
-
 ## Appendix B — Submission Files
 
 | File | Purpose |
 |---|---|
-| `REPORT.md` (this document) | Formal project report |
+| `REPORT.md` / `REPORT_dbs_fixed.docx` (this document) | Formal project report |
 | `schema.sql` | DDL: 11 tables, constraints, indexes, triggers, stored procedure, views |
 | `sample_data.sql` | Populates the schema with realistic multi-user, multi-currency data |
 | `queries.sql` | 12 key reporting queries aligned with §10 RA expressions |
+| `FinanceApp.java` | Single-file JDBC TUI client (see §17) |
+| `db.properties.example` | Template for local DB credentials (real `db.properties` is gitignored) |
+| `mysql-connector-j-8.4.0.jar` | MySQL JDBC driver bundled for offline build |
 
-To run end-to-end:
+### Running the SQL layer only
 ```
 mysql -u root -p < schema.sql
 mysql -u root -p finance_tracker < sample_data.sql
 mysql -u root -p finance_tracker < queries.sql
+```
+
+### Running the JDBC TUI (auto-loads schema and sample data on first run)
+```
+cp db.properties.example db.properties     # then edit credentials
+javac FinanceApp.java
+java -cp .:mysql-connector-j-8.4.0.jar FinanceApp
 ```
 
 ---

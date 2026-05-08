@@ -20,7 +20,7 @@ CREATE TABLE users (
 
 -- 2. CURRENCIES + EXCHANGE RATES
 CREATE TABLE currencies (
-    currency_code CHAR(3)     NOT NULL,    -- ISO 4217 (PKR, USD, USDT, ...)
+    currency_code VARCHAR(10)     NOT NULL,    -- ticker (PKR, USD, USDT, ...)
     currency_name VARCHAR(50) NOT NULL,
     symbol        VARCHAR(5)  NOT NULL,
     PRIMARY KEY (currency_code)
@@ -28,8 +28,8 @@ CREATE TABLE currencies (
 
 CREATE TABLE exchange_rates (
     rate_id        INT          NOT NULL AUTO_INCREMENT,
-    from_currency  CHAR(3)      NOT NULL,
-    to_currency    CHAR(3)      NOT NULL,
+    from_currency  VARCHAR(10)      NOT NULL,
+    to_currency    VARCHAR(10)      NOT NULL,
     rate           DECIMAL(18,8) NOT NULL,
     effective_date DATE         NOT NULL,
     PRIMARY KEY (rate_id),
@@ -55,7 +55,7 @@ CREATE TABLE accounts (
     user_id        INT           NOT NULL,
     account_name   VARCHAR(80)   NOT NULL,
     type_id        INT           NOT NULL,
-    currency_code  CHAR(3)       NOT NULL,
+    currency_code  VARCHAR(10)       NOT NULL,
     balance        DECIMAL(18,2) NOT NULL DEFAULT 0.00,    -- maintained by trigger
     created_at     DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
     is_active      BOOLEAN       NOT NULL DEFAULT TRUE,
@@ -112,7 +112,7 @@ CREATE TABLE budgets (
     category_id   INT           NOT NULL,
     month_year    DATE          NOT NULL,                -- always store first of month
     limit_amount  DECIMAL(18,2) NOT NULL,
-    currency_code CHAR(3)       NOT NULL DEFAULT 'PKR',
+    currency_code VARCHAR(10)       NOT NULL DEFAULT 'PKR',
     PRIMARY KEY (budget_id),
     UNIQUE KEY uq_budget (user_id, category_id, month_year),
     FOREIGN KEY (user_id)       REFERENCES users(user_id)         ON DELETE CASCADE,
@@ -128,7 +128,7 @@ CREATE TABLE goals (
     user_id       INT           NOT NULL,
     goal_name     VARCHAR(100)  NOT NULL,
     target_amount DECIMAL(18,2) NOT NULL,
-    currency_code CHAR(3)       NOT NULL DEFAULT 'PKR',
+    currency_code VARCHAR(10)       NOT NULL DEFAULT 'PKR',
     target_date   DATE          NULL,
     status        ENUM('active','achieved','cancelled') NOT NULL DEFAULT 'active',
     created_at    DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -172,7 +172,7 @@ CREATE TABLE investments (
     symbol        VARCHAR(20)   NOT NULL,                -- AAPL, BTC, XAU
     quantity      DECIMAL(18,8) NOT NULL,
     buy_price     DECIMAL(18,4) NOT NULL,                -- per unit, in currency_code
-    currency_code CHAR(3)       NOT NULL,
+    currency_code VARCHAR(10)       NOT NULL,
     buy_date      DATE          NOT NULL,
     PRIMARY KEY (investment_id),
     FOREIGN KEY (user_id)       REFERENCES users(user_id) ON DELETE CASCADE,
@@ -189,7 +189,7 @@ CREATE TABLE asset_prices (
     inv_type_id   INT           NOT NULL,
     symbol        VARCHAR(20)   NOT NULL,
     price         DECIMAL(18,4) NOT NULL,
-    currency_code CHAR(3)       NOT NULL,
+    currency_code VARCHAR(10)       NOT NULL,
     price_date    DATE          NOT NULL,
     PRIMARY KEY (price_id),
     UNIQUE KEY uq_price (inv_type_id, symbol, price_date),

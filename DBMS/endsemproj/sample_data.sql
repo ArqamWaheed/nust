@@ -46,10 +46,10 @@ INSERT INTO investment_types (type_name, unit_label) VALUES
 -- ---------- Users (3 stakeholders represented) ----------
 -- password_hash values are illustrative bcrypt strings
 INSERT INTO users (full_name, email, password_hash, role) VALUES
-  ('Arqam Waheed',     'arqam@example.com',   '$2b$12$abcdefghijklmnopqrstuv1234567890ABCDEFGHIJKLMNOPQRSTUV', 'user'),
-  ('Hira Khan',        'hira@example.com',    '$2b$12$bcdefghijklmnopqrstuvw2345678901BCDEFGHIJKLMNOPQRSTUVW', 'user'),
-  ('System Admin',     'admin@example.com',   '$2b$12$cdefghijklmnopqrstuvwx3456789012CDEFGHIJKLMNOPQRSTUVWX', 'admin'),
-  ('Audit Reviewer',   'auditor@example.com', '$2b$12$defghijklmnopqrstuvwxy4567890123DEFGHIJKLMNOPQRSTUVWXY', 'auditor');
+  ('Arqam Waheed',     'arqam@example.com',   '$2b$12$abcdefghijklmnopqrstuu1234567890ABCDEFGHIJKLMNOPQRST', 'user'),
+  ('Hira Khan',        'hira@example.com',    '$2b$12$bcdefghijklmnopqrstuvv2345678901BCDEFGHIJKLMNOPQRSTU', 'user'),
+  ('System Admin',     'admin@example.com',   '$2b$12$cdefghijklmnopqrstuvww3456789012CDEFGHIJKLMNOPQRSTUV', 'admin'),
+  ('Audit Reviewer',   'auditor@example.com', '$2b$12$defghijklmnopqrstuvwxx4567890123DEFGHIJKLMNOPQRSTUVW', 'auditor');
 
 -- ---------- Accounts ----------
 INSERT INTO accounts (user_id, account_name, type_id, currency_code) VALUES

@@ -1,0 +1,7 @@
+# Copy this file to db.properties and edit with your MySQL credentials.
+# The user must have privileges to CREATE the finance_tracker database
+# on first run (FinanceApp will then load schema.sql and sample_data.sql).
+
+url=jdbc:mysql://localhost:3306/finance_tracker
+user=finance
+password=Finance@123!

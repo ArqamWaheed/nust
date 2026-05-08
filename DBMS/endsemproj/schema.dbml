@@ -1,0 +1,163 @@
+// Personal Finance & Investment Tracker
+// Paste into https://dbdiagram.io/d  (File -> Import -> DBML, or just paste in the editor)
+
+Project finance_tracker {
+  database_type: 'MySQL'
+  Note: 'Multi-user, multi-currency personal finance + investment tracker'
+}
+
+Table users {
+  user_id        int          [pk, increment]
+  full_name      varchar(100) [not null]
+  email          varchar(150) [not null, unique]
+  password_hash  char(60)     [not null, note: 'bcrypt']
+  role          "enum('user','admin','auditor')" [not null, default: 'user']
+  joined_at      datetime     [not null, default: `CURRENT_TIMESTAMP`]
+  is_active      boolean      [not null, default: true]
+}
+
+Table currencies {
+  currency_code  varchar(10) [pk]
+  currency_name  varchar(50) [not null]
+  symbol         varchar(5)  [not null]
+}
+
+Table exchange_rates {
+  rate_id        int          [pk, increment]
+  from_currency  varchar(10)  [not null, ref: > currencies.currency_code]
+  to_currency    varchar(10)  [not null, ref: > currencies.currency_code]
+  rate           decimal(18,8) [not null]
+  effective_date date         [not null]
+
+  Indexes {
+    (from_currency, to_currency, effective_date) [unique, name: 'uq_rate']
+    (from_currency, to_currency, effective_date) [name: 'idx_rate_lookup']
+  }
+}
+
+Table account_types {
+  type_id   int         [pk, increment]
+  type_name varchar(40) [not null, unique]
+}
+
+Table accounts {
+  account_id    int           [pk, increment]
+  user_id       int           [not null, ref: > users.user_id]
+  account_name  varchar(80)   [not null]
+  type_id       int           [not null, ref: > account_types.type_id]
+  currency_code varchar(10)   [not null, ref: > currencies.currency_code]
+  balance       decimal(18,2) [not null, default: 0.00, note: 'maintained by trigger']
+  created_at    datetime      [not null, default: `CURRENT_TIMESTAMP`]
+  is_active     boolean       [not null, default: true]
+
+  Indexes {
+    (user_id, account_name) [unique, name: 'uq_user_account']
+    user_id [name: 'idx_accounts_user']
+  }
+}
+
+Table categories {
+  category_id   int         [pk, increment]
+  category_name varchar(50) [not null]
+  kind         "enum('income','expense')" [not null]
+  is_system     boolean     [not null, default: true]
+
+  Indexes {
+    (category_name, kind) [unique, name: 'uq_cat']
+  }
+}
+
+Table transactions {
+  txn_id        bigint        [pk, increment]
+  account_id    int           [not null, ref: > accounts.account_id]
+  category_id   int           [null, ref: > categories.category_id, note: 'NULL for transfers']
+  txn_type     "enum('income','expense','transfer_in','transfer_out')" [not null]
+  amount        decimal(18,2) [not null]
+  txn_date      date          [not null]
+  description   varchar(255)  [null]
+  linked_txn_id bigint        [null, ref: - transactions.txn_id, note: 'self-FK for transfer pair']
+  created_at    datetime      [not null, default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (account_id, txn_date) [name: 'idx_txn_account_date']
+    category_id [name: 'idx_txn_category']
+    txn_date [name: 'idx_txn_date']
+  }
+}
+
+Table budgets {
+  budget_id     int           [pk, increment]
+  user_id       int           [not null, ref: > users.user_id]
+  category_id   int           [not null, ref: > categories.category_id]
+  month_year    date          [not null, note: 'always first of month']
+  limit_amount  decimal(18,2) [not null]
+  currency_code varchar(10)   [not null, default: 'PKR', ref: > currencies.currency_code]
+
+  Indexes {
+    (user_id, category_id, month_year) [unique, name: 'uq_budget']
+  }
+}
+
+Table goals {
+  goal_id       int           [pk, increment]
+  user_id       int           [not null, ref: > users.user_id]
+  goal_name     varchar(100)  [not null]
+  target_amount decimal(18,2) [not null]
+  currency_code varchar(10)   [not null, default: 'PKR', ref: > currencies.currency_code]
+  target_date   date          [null]
+  status       "enum('active','achieved','cancelled')" [not null, default: 'active']
+  created_at    datetime      [not null, default: `CURRENT_TIMESTAMP`]
+
+  Indexes {
+    (user_id, goal_name) [unique, name: 'uq_user_goal']
+  }
+}
+
+Table goal_contributions {
+  contribution_id   int           [pk, increment]
+  goal_id           int           [not null, ref: > goals.goal_id]
+  amount            decimal(18,2) [not null]
+  contribution_date date          [not null]
+  source_account_id int           [null, ref: > accounts.account_id]
+  note              varchar(255)  [null]
+
+  Indexes {
+    goal_id [name: 'idx_contrib_goal']
+  }
+}
+
+Table investment_types {
+  inv_type_id int         [pk, increment]
+  type_name   varchar(40) [not null, unique, note: 'Stock, Crypto, Gold, Bond']
+  unit_label  varchar(20) [not null, note: 'shares, coins, grams']
+}
+
+Table investments {
+  investment_id int           [pk, increment]
+  user_id       int           [not null, ref: > users.user_id]
+  inv_type_id   int           [not null, ref: > investment_types.inv_type_id]
+  asset_name    varchar(80)   [not null]
+  symbol        varchar(20)   [not null]
+  quantity      decimal(18,8) [not null]
+  buy_price     decimal(18,4) [not null]
+  currency_code varchar(10)   [not null, ref: > currencies.currency_code]
+  buy_date      date          [not null]
+
+  Indexes {
+    user_id [name: 'idx_investments_user']
+  }
+}
+
+Table asset_prices {
+  price_id      int           [pk, increment]
+  inv_type_id   int           [not null, ref: > investment_types.inv_type_id]
+  symbol        varchar(20)   [not null]
+  price         decimal(18,4) [not null]
+  currency_code varchar(10)   [not null, ref: > currencies.currency_code]
+  price_date    date          [not null]
+
+  Indexes {
+    (inv_type_id, symbol, price_date) [unique, name: 'uq_price']
+    (inv_type_id, symbol, price_date) [name: 'idx_price_lookup']
+  }
+}
