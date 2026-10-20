@@ -1,0 +1,3 @@
+[server] UDP file server on 127.0.0.1:6001, sharing server_files/
+[server] 127.0.0.1:58563 asked for 'sensor_log.txt'
+[server] sent 302 datagram(s) for 301 chunk(s)

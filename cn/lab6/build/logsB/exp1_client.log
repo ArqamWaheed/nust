@@ -1,0 +1,14 @@
+[client] connected, local port 37064
+[client] greeting: Welcome to the Computer Networks Lab
+[client] sending : Hello Server
+[client] reply   : [1] revreS olleH
+[client] sending : Computer Networks
+[client] reply   : [2] skrowteN retupmoC
+[client] sending : Socket programming lab
+[client] reply   : [3] bal gnimmargorp tekcoS
+[client] sending : Reliable byte stream
+[client] reply   : [4] maerts etyb elbaileR
+[client] sending : Ordered delivery
+[client] reply   : [5] yreviled deredrO
+[client] sending : exit
+[client] closed

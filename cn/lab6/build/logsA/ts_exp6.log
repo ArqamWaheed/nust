@@ -1,0 +1,11 @@
+$ ip -4 -o addr show wlp0s20f3
+3: wlp0s20f3    inet 192.168.0.108/24 brd 192.168.0.255 scope global dynamic noprefixroute wlp0s20f3\       valid_lft 5814sec preferred_lft 5814sec
+$ ping -c 3 192.168.0.108
+PING 192.168.0.108 (192.168.0.108) 56(84) bytes of data.
+64 bytes from 192.168.0.108: icmp_seq=1 ttl=64 time=0.034 ms
+64 bytes from 192.168.0.108: icmp_seq=2 ttl=64 time=0.122 ms
+64 bytes from 192.168.0.108: icmp_seq=3 ttl=64 time=0.028 ms
+
+--- 192.168.0.108 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2047ms
+rtt min/avg/max/mdev = 0.028/0.061/0.122/0.042 ms

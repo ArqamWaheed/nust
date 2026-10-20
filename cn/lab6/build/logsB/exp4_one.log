@@ -1,0 +1,6 @@
+[sender]   sendall(b'AAAA')
+[sender]   sendall(b'BBBB')
+[sender]   sendall(b'CCCC')
+[receiver] recv(1024) returned: b'AAAABBBBCCCC'
+[receiver] number of bytes: 12
+[receiver] sender made 3 send calls, receiver made 1 recv call

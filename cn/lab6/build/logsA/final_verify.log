@@ -1,0 +1,6 @@
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  server_files/sensor_log.txt
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  received_tcp_sensor_log.txt
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  received_udp_sensor_log.txt
+-rw-rw-r-- 1 arqamwd arqamwd 307224 Oct 17 19:41 received_tcp_sensor_log.txt
+-rw-rw-r-- 1 arqamwd arqamwd 307224 Oct 17 19:41 received_udp_sensor_log.txt
+-rw-rw-r-- 1 arqamwd arqamwd 307224 Oct 17 19:40 server_files/sensor_log.txt

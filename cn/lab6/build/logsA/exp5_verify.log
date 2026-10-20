@@ -1,0 +1,5 @@
+-rw-rw-r-- 1 arqamwd arqamwd 11000 Oct 17 19:40 received_share_me.txt
+-rw-rw-r-- 1 arqamwd arqamwd 11000 Oct 17 19:40 share_me.txt
+cmp: files are identical
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  share_me.txt
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  received_share_me.txt

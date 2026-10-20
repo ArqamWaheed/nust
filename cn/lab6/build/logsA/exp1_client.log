@@ -1,0 +1,14 @@
+Connected to TCP server.
+Server: Welcome to the Computer Networks Lab
+Enter message: Hello Server
+Server: Server received: revreS olleH
+Enter message: Computer Networks
+Server: Server received: skrowteN retupmoC
+Enter message: Lab 6 socket programming
+Server: Server received: gnimmargorp tekcos 6 baL
+Enter message: Arqam Waheed 553514
+Server: Server received: 415355 deehaW maqrA
+Enter message: TCP is reliable
+Server: Server received: elbailer si PCT
+Enter message: exit
+Client closed.

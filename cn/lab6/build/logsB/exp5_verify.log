@@ -1,0 +1,5 @@
+     11000 bytes  share_me.txt
+     11000 bytes  received_share_me.txt
+cmp: no differences
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  share_me.txt
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  received_share_me.txt

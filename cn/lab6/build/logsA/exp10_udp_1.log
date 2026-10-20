@@ -1,0 +1,9 @@
+Protocol          : UDP
+Filename          : sensor_log.txt
+Bytes received    : 307224 of 307224
+Chunks            : 301
+Duplicates ignored: 0
+Unexpected packets: 0
+Elapsed time      : 0.0083 s
+Throughput        : 36185.93 KB/s
+File integrity    : MATCH

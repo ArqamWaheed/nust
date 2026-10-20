@@ -1,0 +1,9 @@
+3: wlp0s20f3    inet 192.168.0.108/24 brd 192.168.0.255 scope global dynamic noprefixroute wlp0s20f3\       valid_lft 5922sec preferred_lft 5922sec
+PING 192.168.0.108 (192.168.0.108) 56(84) bytes of data.
+64 bytes from 192.168.0.108: icmp_seq=1 ttl=64 time=0.037 ms
+64 bytes from 192.168.0.108: icmp_seq=2 ttl=64 time=0.018 ms
+64 bytes from 192.168.0.108: icmp_seq=3 ttl=64 time=0.044 ms
+
+--- 192.168.0.108 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2075ms
+rtt min/avg/max/mdev = 0.018/0.033/0.044/0.011 ms

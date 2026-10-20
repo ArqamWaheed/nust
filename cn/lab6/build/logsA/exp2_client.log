@@ -1,0 +1,13 @@
+UDP Client started.
+Enter message: Hello Server
+Server: Server received: HELLO SERVER
+Enter message: UDP has no handshake
+Server: Server received: UDP HAS NO HANDSHAKE
+Enter message: Datagrams are independent
+Server: Server received: DATAGRAMS ARE INDEPENDENT
+Enter message: Arqam Waheed 553514
+Server: Server received: ARQAM WAHEED 553514
+Enter message: Faster but not reliable
+Server: Server received: FASTER BUT NOT RELIABLE
+Enter message: exit
+Client closed.

@@ -1,0 +1,5 @@
+UDP echo server listening on 127.0.0.1:5006
+Echoing 14 bytes from ('127.0.0.1', 51632): b'Echo this back'
+Echoing 14 bytes from ('127.0.0.1', 51632): b'MiXeD CaSe 123'
+Echoing 4 bytes from ('127.0.0.1', 51632): b'exit'
+Echo server closed.

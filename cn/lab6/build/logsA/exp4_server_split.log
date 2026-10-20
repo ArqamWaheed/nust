@@ -1,0 +1,3 @@
+Boundary demo server waiting...
+Connected by: ('127.0.0.1', 36136)
+Sent AAAA, BBBB, CCCC in three sendall() calls

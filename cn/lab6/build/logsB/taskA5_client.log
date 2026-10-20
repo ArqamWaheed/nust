@@ -1,0 +1,6 @@
+[client] 12 + 8       -> Result: 20
+[client] 7 * 6        -> Result: 42
+[client] 45 / 4       -> Result: 11.25
+[client] 10 / 0       -> ERROR division by zero
+[client] 5 ^ 2        -> ERROR unknown operator '^' (use + - * /)
+[client] closed

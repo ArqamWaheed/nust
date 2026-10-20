@@ -1,0 +1,8 @@
+$ sha256sum server_files/sensor_log.txt received_tcp_sensor_log.txt received_udp_sensor_log.txt
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  server_files/sensor_log.txt
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  received_tcp_sensor_log.txt
+fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b  received_udp_sensor_log.txt
+$ stat -c '%10s bytes  %n' server_files/sensor_log.txt received_tcp_sensor_log.txt received_udp_sensor_log.txt
+    307224 bytes  server_files/sensor_log.txt
+    307224 bytes  received_tcp_sensor_log.txt
+    307224 bytes  received_udp_sensor_log.txt

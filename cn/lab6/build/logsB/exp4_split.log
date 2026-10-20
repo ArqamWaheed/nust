@@ -1,0 +1,6 @@
+[sender]   sendall(b'AAAA')
+[sender]   sendall(b'BBBB')
+[sender]   sendall(b'CCCC')
+[receiver] recv(5) call 1: b'AAAAB'  (5 bytes)
+[receiver] recv(5) call 2: b'BBBCC'  (5 bytes)
+[receiver] recv(5) call 3: b'CC'  (2 bytes)

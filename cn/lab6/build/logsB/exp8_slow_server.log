@@ -1,0 +1,2 @@
+[server] TCP file server on 127.0.0.1:6000, sharing server_files/
+[server] 127.0.0.1:54936 asked for 'sensor_log.txt'

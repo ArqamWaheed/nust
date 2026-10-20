@@ -1,0 +1,9 @@
+[server] listening on 127.0.0.1:5000
+[server] connected by 127.0.0.1:37064
+[server] message 1: Hello Server
+[server] message 2: Computer Networks
+[server] message 3: Socket programming lab
+[server] message 4: Reliable byte stream
+[server] message 5: Ordered delivery
+[server] message 6: exit
+[server] closed after 6 message(s)

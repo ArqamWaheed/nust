@@ -1,0 +1,12 @@
+Missing after round 0: [7] - asking the server to resend
+Protocol          : UDP
+Filename          : sensor_log.txt
+Saved as          : received_udp_sensor_log.txt
+Bytes received    : 307224 of 307224
+Chunks            : 301
+Duplicates ignored: 0
+Unexpected packets: 0
+Repair rounds     : 1
+Elapsed time      : 2.0091 s
+Throughput        : 149.34 KB/s
+File integrity    : MATCH

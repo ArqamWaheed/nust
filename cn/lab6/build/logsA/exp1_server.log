@@ -1,0 +1,9 @@
+TCP Server is waiting for a connection...
+Connected by: ('127.0.0.1', 60888)
+Message 1: Hello Server
+Message 2: Computer Networks
+Message 3: Lab 6 socket programming
+Message 4: Arqam Waheed 553514
+Message 5: TCP is reliable
+Message 6: exit
+Server closed. Messages handled: 6

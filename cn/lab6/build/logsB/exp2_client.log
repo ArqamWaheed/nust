@@ -1,0 +1,13 @@
+[client] UDP client started (no connect, no handshake)
+[client] sent    : Hello Server
+[client] reply   : Server received: HELLO SERVER   (changed)
+[client] sent    : No handshake here
+[client] reply   : Server received: NO HANDSHAKE HERE   (changed)
+[client] sent    : One datagram per recvfrom
+[client] reply   : Server received: ONE DATAGRAM PER RECVFROM   (changed)
+[client] sent    : Boundaries preserved
+[client] reply   : Server received: BOUNDARIES PRESERVED   (changed)
+[client] sent    : Lower overhead
+[client] reply   : Server received: LOWER OVERHEAD   (changed)
+[client] sent    : exit
+[client] closed

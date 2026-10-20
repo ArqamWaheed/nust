@@ -1,0 +1,7 @@
+UDP file server listening on 127.0.0.1:6001
+Request from ('127.0.0.1', 35690) for: 'sensor_log.txt'
+Sent 301 datagrams (301 chunks in the file)
+Request from ('127.0.0.1', 40823) for: 'sensor_log.txt'
+Sent 301 datagrams (301 chunks in the file)
+Request from ('127.0.0.1', 50348) for: 'sensor_log.txt'
+Sent 301 datagrams (301 chunks in the file)

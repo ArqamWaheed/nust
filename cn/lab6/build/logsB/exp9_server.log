@@ -1,0 +1,7 @@
+[server] UDP file server on 127.0.0.1:6001, sharing server_files/
+[server] 127.0.0.1:55313 asked for 'sensor_log.txt'
+[server] sent 301 datagram(s) for 301 chunk(s)
+[server] 127.0.0.1:35451 asked for 'missing.txt'
+[server] rejected: File not found
+[server] 127.0.0.1:33343 asked for '../secret.txt'
+[server] rejected: Invalid filename

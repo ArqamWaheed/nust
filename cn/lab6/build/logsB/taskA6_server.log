@@ -1,0 +1,5 @@
+[server] UDP echo server on 127.0.0.1:5001
+[server]  14 bytes from port 35044: Echo this back
+[server]  14 bytes from port 35044: MiXeD CaSe 123
+[server]   4 bytes from port 35044: exit
+[server] closed

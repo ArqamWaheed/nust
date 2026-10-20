@@ -1,0 +1,8 @@
+Protocol       : TCP
+Filename       : sensor_log.txt
+Saved as       : received_tcp_sensor_log.txt
+Bytes received : 307224 of 307224
+Elapsed time   : 0.0026 s
+Throughput     : 115926.85 KB/s
+Expected hash  : fc33991fe8d1d508ff1b28ece630bc9d...
+File integrity : MATCH

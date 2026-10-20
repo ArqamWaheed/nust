@@ -1,0 +1,9 @@
+TCP file server listening on 127.0.0.1:6000
+Request from ('127.0.0.1', 47192) for: 'sensor_log.txt'
+Sent 307224 bytes in 0.0005 s
+Request from ('127.0.0.1', 47204) for: 'notes_log.txt'
+Sent 102425 bytes in 0.0002 s
+Request from ('127.0.0.1', 49898) for: 'missing.txt'
+Rejected: file not found
+Request from ('127.0.0.1', 49908) for: '../secret.txt'
+Rejected: invalid filename

@@ -1,0 +1,7 @@
+UDP echo client started.
+Enter message: Echo this back
+Echo: 'Echo this back'  identical: True
+Enter message: MiXeD CaSe 123
+Echo: 'MiXeD CaSe 123'  identical: True
+Enter message: exit
+Client closed.

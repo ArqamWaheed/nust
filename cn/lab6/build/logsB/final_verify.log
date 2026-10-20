@@ -1,0 +1,18 @@
+File       : server_files/sensor_log.txt
+Size       : 307224 bytes (300.0 KB)
+SHA-256    : fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b
+Hash time  : 0.000342 s
+Throughput : 878160.21 KB/s
+
+File       : received_tcp_sensor_log.txt
+Size       : 307224 bytes (300.0 KB)
+SHA-256    : fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b
+Hash time  : 0.000252 s
+Throughput : 1189412.83 KB/s
+
+File       : received_udp_sensor_log.txt
+Size       : 307224 bytes (300.0 KB)
+SHA-256    : fc33991fe8d1d508ff1b28ece630bc9df8746681def5ea376f3a01b6d994200b
+Hash time  : 0.000265 s
+Throughput : 1132762.35 KB/s
+

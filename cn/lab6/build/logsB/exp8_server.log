@@ -1,0 +1,9 @@
+[server] TCP file server on 127.0.0.1:6000, sharing server_files/
+[server] 127.0.0.1:54894 asked for 'sensor_log.txt'
+[server] 127.0.0.1:54894 sent 307224 bytes in 0.0016 s (193553 KB/s)
+[server] 127.0.0.1:54904 asked for 'notes_log.txt'
+[server] 127.0.0.1:54904 sent 102425 bytes in 0.0008 s (129318 KB/s)
+[server] 127.0.0.1:54910 asked for 'missing.txt'
+[server] 127.0.0.1:54910 rejected: file not found
+[server] 127.0.0.1:54916 asked for '../secret.txt'
+[server] 127.0.0.1:54916 rejected: invalid filename

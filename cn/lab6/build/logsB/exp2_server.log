@@ -1,0 +1,8 @@
+[server] UDP upper server on 127.0.0.1:5001
+[server]  12 bytes from port 42380: Hello Server
+[server]  17 bytes from port 42380: No handshake here
+[server]  25 bytes from port 42380: One datagram per recvfrom
+[server]  20 bytes from port 42380: Boundaries preserved
+[server]  14 bytes from port 42380: Lower overhead
+[server]   4 bytes from port 42380: exit
+[server] closed

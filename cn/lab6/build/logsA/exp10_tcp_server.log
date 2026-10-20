@@ -1,0 +1,7 @@
+TCP file server listening on 127.0.0.1:6000
+Request from ('127.0.0.1', 58398) for: 'sensor_log.txt'
+Sent 307224 bytes in 0.0007 s
+Request from ('127.0.0.1', 56132) for: 'sensor_log.txt'
+Sent 307224 bytes in 0.0009 s
+Request from ('127.0.0.1', 56140) for: 'sensor_log.txt'
+Sent 307224 bytes in 0.0010 s

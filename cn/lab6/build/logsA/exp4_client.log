@@ -1,0 +1,2 @@
+recv() returned: b'AAAABBBBCCCC'
+Number of bytes: 12

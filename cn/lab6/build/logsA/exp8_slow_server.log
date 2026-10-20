@@ -1,0 +1,2 @@
+TCP file server listening on 127.0.0.1:6000
+Request from ('127.0.0.1', 49924) for: 'sensor_log.txt'

@@ -1,0 +1,8 @@
+Protocol       : TCP
+Filename       : notes_log.txt
+Saved as       : received_tcp_notes_log.txt
+Bytes received : 102425 of 102425
+Elapsed time   : 0.0018 s
+Throughput     : 56569.87 KB/s
+Expected hash  : 4551da1280478a6e4890c6e71237b5d4...
+File integrity : MATCH

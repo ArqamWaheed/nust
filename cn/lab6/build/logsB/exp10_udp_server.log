@@ -1,0 +1,13 @@
+[server] UDP file server on 127.0.0.1:6001, sharing server_files/
+[server] 127.0.0.1:55054 asked for 'sensor_log.txt'
+[server] sent 301 datagram(s) for 301 chunk(s)
+[server] 127.0.0.1:50939 asked for 'sensor_log.txt'
+[server] sent 301 datagram(s) for 301 chunk(s)
+[server] 127.0.0.1:57830 asked for 'sensor_log.txt'
+[server] sent 301 datagram(s) for 301 chunk(s)
+[server] 127.0.0.1:34702 asked for 'notes_log.txt'
+[server] sent 101 datagram(s) for 101 chunk(s)
+[server] 127.0.0.1:51200 asked for 'notes_log.txt'
+[server] sent 101 datagram(s) for 101 chunk(s)
+[server] 127.0.0.1:49336 asked for 'notes_log.txt'
+[server] sent 101 datagram(s) for 101 chunk(s)

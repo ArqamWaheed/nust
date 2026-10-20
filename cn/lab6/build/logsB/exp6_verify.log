@@ -1,0 +1,12 @@
+File       : share_me.txt
+Size       : 11000 bytes (10.7 KB)
+SHA-256    : c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c
+Hash time  : 0.000059 s
+Throughput : 182886.21 KB/s
+
+File       : received_share_me.txt
+Size       : 11000 bytes (10.7 KB)
+SHA-256    : c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c
+Hash time  : 0.000021 s
+Throughput : 511557.11 KB/s
+

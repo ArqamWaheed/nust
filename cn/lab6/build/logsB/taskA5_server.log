@@ -1,0 +1,8 @@
+[server] calculator ready on 127.0.0.1:5005
+[server] connected by 127.0.0.1:33782
+[server] 12 + 8       -> Result: 20
+[server] 7 * 6        -> Result: 42
+[server] 45 / 4       -> Result: 11.25
+[server] 10 / 0       -> ERROR division by zero
+[server] 5 ^ 2        -> ERROR unknown operator '^' (use + - * /)
+[server] closed

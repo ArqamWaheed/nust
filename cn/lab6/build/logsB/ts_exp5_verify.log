@@ -1,0 +1,8 @@
+$ stat -c '%10s bytes  %n' share_me.txt received_share_me.txt
+     11000 bytes  share_me.txt
+     11000 bytes  received_share_me.txt
+$ cmp share_me.txt received_share_me.txt
+(no output from cmp = the two files are identical)
+$ sha256sum share_me.txt received_share_me.txt
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  share_me.txt
+c105ae77e16f429065c4928158262194f5184f98ce5d86754ef284120611290c  received_share_me.txt

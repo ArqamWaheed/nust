@@ -1,0 +1,13 @@
+[server] TCP file server on 127.0.0.1:6000, sharing server_files/
+[server] 127.0.0.1:52564 asked for 'sensor_log.txt'
+[server] 127.0.0.1:52564 sent 307224 bytes in 0.0011 s (264920 KB/s)
+[server] 127.0.0.1:52580 asked for 'sensor_log.txt'
+[server] 127.0.0.1:52580 sent 307224 bytes in 0.0019 s (161595 KB/s)
+[server] 127.0.0.1:52594 asked for 'sensor_log.txt'
+[server] 127.0.0.1:52594 sent 307224 bytes in 0.0007 s (452459 KB/s)
+[server] 127.0.0.1:52598 asked for 'notes_log.txt'
+[server] 127.0.0.1:52598 sent 102425 bytes in 0.0004 s (273912 KB/s)
+[server] 127.0.0.1:52614 asked for 'notes_log.txt'
+[server] 127.0.0.1:52614 sent 102425 bytes in 0.0006 s (161072 KB/s)
+[server] 127.0.0.1:52626 asked for 'notes_log.txt'
+[server] 127.0.0.1:52626 sent 102425 bytes in 0.0005 s (206002 KB/s)

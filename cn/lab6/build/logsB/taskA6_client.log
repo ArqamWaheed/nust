@@ -1,0 +1,7 @@
+[client] UDP client started (no connect, no handshake)
+[client] sent    : Echo this back
+[client] reply   : Echo this back   (identical)
+[client] sent    : MiXeD CaSe 123
+[client] reply   : MiXeD CaSe 123   (identical)
+[client] sent    : exit
+[client] closed

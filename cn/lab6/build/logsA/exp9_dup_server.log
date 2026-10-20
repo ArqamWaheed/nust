@@ -1,0 +1,3 @@
+UDP file server listening on 127.0.0.1:6001
+Request from ('127.0.0.1', 54331) for: 'sensor_log.txt'
+Sent 302 datagrams (301 chunks in the file)
