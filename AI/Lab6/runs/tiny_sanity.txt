@@ -1,0 +1,100 @@
+### pacman.py -l tinyMaze -p SearchAgent -a fn=tinyMazeSearch -t --frameTime 0
+[SearchAgent] using function tinyMazeSearch
+[SearchAgent] using problem type PositionSearchProblem
+%%%%%%%
+%    <%
+% %%% %
+%  %  %
+%%   %%
+%. %%%%
+%%%%%%%
+Score: 0
+
+Path found with total cost of 8 in 0.0 seconds
+Search nodes expanded: 0
+%%%%%%%
+%     %
+% %%%^%
+%  %  %
+%%   %%
+%. %%%%
+%%%%%%%
+Score: -1
+
+%%%%%%%
+%     %
+% %%% %
+%  % ^%
+%%   %%
+%. %%%%
+%%%%%%%
+Score: -2
+
+%%%%%%%
+%     %
+% %%% %
+%  %> %
+%%   %%
+%. %%%%
+%%%%%%%
+Score: -3
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%%  ^%%
+%. %%%%
+%%%%%%%
+Score: -4
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%% > %%
+%. %%%%
+%%%%%%%
+Score: -5
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%%>  %%
+%. %%%%
+%%%%%%%
+Score: -6
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%%   %%
+%.^%%%%
+%%%%%%%
+Score: -7
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%%   %%
+%> %%%%
+%%%%%%%
+Score: 502
+
+%%%%%%%
+%     %
+% %%% %
+%  %  %
+%%   %%
+%> %%%%
+%%%%%%%
+Score: 502
+
+Pacman emerges victorious! Score: 502
+Average Score: 502.0
+Scores:        502.0
+Win Rate:      1/1 (1.00)
+Record:        Win

@@ -1,0 +1,2 @@
+First removed: B
+Second removed: C
